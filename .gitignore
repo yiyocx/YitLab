@@ -1,0 +1,28 @@
+# Android generated
+bin
+gen
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+
+# Gradle
+.gradle
+local.properties
+gradlew
+gradlew.bat
+gradle/
+build/
+
+# Vi
+*.swp
+
+# Other
+.DS_Store
+Thumbs.db
+/captures
+

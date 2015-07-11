@@ -1,0 +1,21 @@
+<resources>
+
+    <style name="AppTheme" parent="Base.AppTheme">
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Login.Theme" parent="Base.Login.Theme">
+    </style>
+
+    <!-- Base Login theme. -->
+    <style name="Base.Login.Theme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+</resources>

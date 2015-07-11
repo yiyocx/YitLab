@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_subheader"
+            android:title="Soy un agrupador">
+            <menu>
+                <item
+                    android:id="@+id/navigation_item_1"
+                    android:checked="true"
+                    android:title="Titulo 1" />
+                <item
+                    android:id="@+id/navigation_item_2"
+                    android:title="Titulo 2"
+                    android:onClick="some"/>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/navigation_subheader_2"
+            android:title="Otro agrupador">
+            <menu>
+                <item android:title="Titulo 3"/>
+                <item android:title="Titulo 4"/>
+            </menu>
+
+        </item>
+    </group>
+</menu>
