@@ -1,9 +1,9 @@
 package yiyo.gitlabandroid.views.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Bind(R.id.email) AutoCompleteTextView mEmailView;
     @Bind(R.id.password) EditText mPasswordView;
     private LoginPresenter loginPresenter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,26 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter.attachView(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loginPresenter.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        loginPresenter.stop();
+    }
+
     @OnClick(R.id.email_sign_in_button)
     public void attemptLogin() {
-        // Reset errors.
+
+        // Reset errors
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
+        // Get values at the time of the login attempt
         String username = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -46,12 +60,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void showProgress() {
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing In");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     @Override
     public void hideProgress() {
-
+        progressDialog.dismiss();
     }
 
     @Override
@@ -61,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setupPasswordError() {
-        mPasswordView.setError(getString(R.string.error_invalid_password));
+        mPasswordView.setError(getString(R.string.error_field_required));
     }
 
     @Override

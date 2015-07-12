@@ -1,8 +1,6 @@
 package yiyo.gitlabandroid.mvp.presenters;
 
-import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.mvp.views.LoginView;
@@ -16,12 +14,12 @@ public class LoginPresenter implements Presenter<LoginView> {
 
     @Override
     public void start() {
-
+        // Unused
     }
 
     @Override
     public void stop() {
-
+        // Unused
     }
 
     @Override
@@ -30,26 +28,26 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     public void validateCredentials(String username, String password) {
+        loginView.showProgress();
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)) {
             loginView.setupPasswordError();
+            loginView.hideProgress();
         }
 
         // Check for a valid username address.
         if (TextUtils.isEmpty(username)) {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
-        } else if (!isEmailValid(username)) {
-            loginView.setupUsernameError(loginView.getContext().getString(R.string.error_invalid_email));
+            loginView.hideProgress();
+        } else if (isEmail(username)) {
+            loginView.hideProgress();
+        } else {
+            loginView.hideProgress();
         }
     }
 
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
-    }
-
-    private boolean isEmailValid(String email) {
+    private boolean isEmail(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
