@@ -41,18 +41,10 @@ public class LoginPresenter implements Presenter<LoginView> {
         if (TextUtils.isEmpty(username)) {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
             loginView.hideProgress();
-        } else if (isEmail(username)) {
-            loginView.hideProgress();
         } else {
             new LoginUsecaseController(username, password).execute();
-            loginView.hideProgress();
         }
-
-
     }
 
-    private boolean isEmail(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
+
 }

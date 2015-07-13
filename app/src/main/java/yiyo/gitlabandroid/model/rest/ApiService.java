@@ -1,6 +1,9 @@
 package yiyo.gitlabandroid.model.rest;
 
+import com.google.gson.JsonObject;
+
 import retrofit.Callback;
+import retrofit.http.Body;
 import retrofit.http.POST;
 
 /**
@@ -9,5 +12,5 @@ import retrofit.http.POST;
 public interface ApiService {
 
     @POST("/session")
-    void createSession(Callback callback);
+    void signIn(@Body JsonObject credentials, Callback<JsonObject> callback);
 }
