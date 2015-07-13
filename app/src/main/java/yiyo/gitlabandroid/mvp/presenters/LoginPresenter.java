@@ -3,6 +3,7 @@ package yiyo.gitlabandroid.mvp.presenters;
 import android.text.TextUtils;
 
 import yiyo.gitlabandroid.R;
+import yiyo.gitlabandroid.domain.LoginUsecaseController;
 import yiyo.gitlabandroid.mvp.views.LoginView;
 
 /**
@@ -43,8 +44,11 @@ public class LoginPresenter implements Presenter<LoginView> {
         } else if (isEmail(username)) {
             loginView.hideProgress();
         } else {
+            new LoginUsecaseController(username, password).execute();
             loginView.hideProgress();
         }
+
+
     }
 
     private boolean isEmail(String email) {

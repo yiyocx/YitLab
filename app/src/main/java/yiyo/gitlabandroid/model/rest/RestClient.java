@@ -8,7 +8,8 @@ import retrofit.RestAdapter;
 public class RestClient {
 
     private static final String BASE_ULR = "https://gitlab.com/api/v3";
-    private ApiService apiService;
+    private static ApiService apiService;
+    private static RestClient INSTANCE;
 
     public RestClient() {
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -19,7 +20,10 @@ public class RestClient {
         apiService = restAdapter.create(ApiService.class);
     }
 
-    public ApiService getApiService() {
+    public static ApiService getApiService() {
+        if (INSTANCE == null) {
+            INSTANCE = new RestClient();
+        }
         return apiService;
     }
 }
