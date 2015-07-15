@@ -5,6 +5,9 @@ import com.google.gson.JsonObject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import yiyo.gitlabandroid.model.rest.ApiService;
 import yiyo.gitlabandroid.model.rest.RestClient;
 
@@ -22,7 +25,7 @@ public class LoginUsecaseController implements LoginUsecase {
     }
 
     @Override
-    public void login() {
+    public Observable<JsonObject> login() {
         ApiService apiService = RestClient.getApiService();
         JsonObject credentials = new JsonObject();
 
@@ -33,25 +36,17 @@ public class LoginUsecaseController implements LoginUsecase {
         }
         credentials.addProperty("password", mPassword);
 
-        apiService.signIn(credentials, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject jsonObject, Response response) {
-                System.out.println("La respuesta=" + jsonObject);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                System.out.println("Algo salio mal");
-            }
-        });
-    }
-
-    @Override
-    public void execute() {
-        login();
+        return apiService.signIn(credentials)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private boolean isEmail(String email) {
         return email.contains("@");
+    }
+
+    @Override
+    public Observable<JsonObject> execute() {
+        return login();
     }
 }

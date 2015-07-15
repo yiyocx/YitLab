@@ -14,4 +14,6 @@ public interface LoginView extends BaseView {
     void setupUsernameError(String usernameError);
 
     void setupPasswordError();
+
+    void navigateToHome();
 }

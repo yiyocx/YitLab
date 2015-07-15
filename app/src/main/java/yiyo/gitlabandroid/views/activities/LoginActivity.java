@@ -2,6 +2,7 @@ package yiyo.gitlabandroid.views.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.AutoCompleteTextView;
@@ -79,6 +80,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void setupPasswordError() {
         mPasswordView.setError(getString(R.string.error_field_required));
+    }
+
+    @Override
+    public void navigateToHome() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

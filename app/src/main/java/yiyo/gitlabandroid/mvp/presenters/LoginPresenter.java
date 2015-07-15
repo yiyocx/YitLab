@@ -2,6 +2,8 @@ package yiyo.gitlabandroid.mvp.presenters;
 
 import android.text.TextUtils;
 
+import rx.Observable;
+import rx.Subscription;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.domain.LoginUsecaseController;
 import yiyo.gitlabandroid.mvp.views.LoginView;
@@ -12,6 +14,7 @@ import yiyo.gitlabandroid.mvp.views.LoginView;
 public class LoginPresenter implements Presenter<LoginView> {
 
     private LoginView loginView;
+    private Subscription mSessionSubscription;
 
     @Override
     public void start() {
@@ -20,7 +23,9 @@ public class LoginPresenter implements Presenter<LoginView> {
 
     @Override
     public void stop() {
-        // Unused
+        if (!mSessionSubscription.isUnsubscribed()) {
+            mSessionSubscription.unsubscribe();
+        }
     }
 
     @Override
@@ -42,9 +47,20 @@ public class LoginPresenter implements Presenter<LoginView> {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
             loginView.hideProgress();
         } else {
-            new LoginUsecaseController(username, password).execute();
+            mSessionSubscription = new LoginUsecaseController(username, password).execute().subscribe(
+                session -> onSessionReceived(),
+                error -> manageError()
+            );
         }
     }
 
+    public void onSessionReceived() {
+        loginView.hideProgress();
+        loginView.navigateToHome();
+    }
+
+    public void manageError() {
+
+    }
 
 }
