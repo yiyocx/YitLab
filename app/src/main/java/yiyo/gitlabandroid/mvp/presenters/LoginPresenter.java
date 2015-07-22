@@ -1,11 +1,12 @@
 package yiyo.gitlabandroid.mvp.presenters;
 
 import android.text.TextUtils;
+import android.util.Log;
 
-import rx.Observable;
 import rx.Subscription;
 import yiyo.gitlabandroid.R;
-import yiyo.gitlabandroid.domain.LoginUsecaseController;
+import yiyo.gitlabandroid.domain.LoginUsecase;
+import yiyo.gitlabandroid.model.rest.models.Session;
 import yiyo.gitlabandroid.mvp.views.LoginView;
 
 /**
@@ -16,6 +17,10 @@ public class LoginPresenter implements Presenter<LoginView> {
     private LoginView loginView;
     private Subscription mSessionSubscription;
 
+    public LoginPresenter() {
+
+    }
+
     @Override
     public void start() {
         // Unused
@@ -23,9 +28,7 @@ public class LoginPresenter implements Presenter<LoginView> {
 
     @Override
     public void stop() {
-        if (!mSessionSubscription.isUnsubscribed()) {
-            mSessionSubscription.unsubscribe();
-        }
+        // Unused
     }
 
     @Override
@@ -47,20 +50,20 @@ public class LoginPresenter implements Presenter<LoginView> {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
             loginView.hideProgress();
         } else {
-            mSessionSubscription = new LoginUsecaseController(username, password).execute().subscribe(
-                session -> onSessionReceived(),
-                error -> manageError()
+            mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
+                    this::onSessionReceived,
+                    this::manageError
             );
         }
     }
 
-    public void onSessionReceived() {
+    public void onSessionReceived(Session session) {
         loginView.hideProgress();
         loginView.navigateToHome();
     }
 
-    public void manageError() {
-
+    public void manageError(Throwable error) {
+        Log.e("LoginError", error.getMessage(), error);
     }
 
 }
