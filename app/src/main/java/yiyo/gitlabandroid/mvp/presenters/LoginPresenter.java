@@ -3,6 +3,7 @@ package yiyo.gitlabandroid.mvp.presenters;
 import android.text.TextUtils;
 import android.util.Log;
 
+import retrofit.RetrofitError;
 import rx.Subscription;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.domain.LoginUsecase;
@@ -63,7 +64,10 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     public void manageError(Throwable error) {
+        loginView.hideProgress();
         Log.e("LoginError", error.getMessage(), error);
-    }
 
+        loginView.showConnectionError((RetrofitError) error);
+
+    }
 }

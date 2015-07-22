@@ -10,4 +10,13 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_no_connection_title">No connection</string>
+    <string name="error_no_connection_description">Unable to connect with "gitlab.com"</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_accept">Aceptar</string>
+    <string name="error_sign_in_failed_title">Sign in failed</string>
+    <string name="error_sign_in_failed_description">The username doesn\'t match with the password</string>
+    <string name="error_unexpected_title">Unexpected Error</string>
+    <string name="error_unexpected_description">An unexpected error has occurred</string>
 </resources>

@@ -1,6 +1,6 @@
 package yiyo.gitlabandroid.mvp.views;
 
-import android.content.Context;
+import retrofit.RetrofitError;
 
 /**
  * Created by yiyo on 11/07/15.
@@ -16,4 +16,6 @@ public interface LoginView extends BaseView {
     void setupPasswordError();
 
     void navigateToHome();
+
+    void showConnectionError(RetrofitError error);
 }
