@@ -56,7 +56,8 @@
                 android:inputType="textEmailAddress|textPersonName"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:imeOptions="actionNext"/>
+                android:imeOptions="actionNext"
+                android:fontFamily="sans-serif-light"/>
 
             <EditText
                 android:id="@+id/password"
@@ -66,7 +67,8 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:imeOptions="actionDone" />
+                android:imeOptions="actionDone"
+                android:fontFamily="sans-serif-light"/>
 
             <Button
                 android:id="@+id/email_sign_in_button"
