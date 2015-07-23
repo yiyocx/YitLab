@@ -8,7 +8,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">#212121</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
 
         <item name="colorButtonNormal">@color/colorPrimaryDark</item>
     </style>

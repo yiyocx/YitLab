@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
         initializeNavigationView();
     }
 

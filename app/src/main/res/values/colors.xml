@@ -3,6 +3,7 @@
     <color name="colorPrimary">#00796B</color>
     <color name="colorPrimaryDark">#004D40</color>
     <color name="colorAccent">#4527A0</color>
+    <color name="textColorPrimary">#212121</color>
 
     <color name="teal_A100">#A7FFEB</color>
     <color name="colorControlHighlight">#00BFA5</color>
