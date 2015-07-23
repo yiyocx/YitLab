@@ -5,8 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.net.HttpURLConnection;
@@ -22,8 +25,9 @@ import yiyo.gitlabandroid.mvp.views.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    @Bind(R.id.email) AutoCompleteTextView mEmailView;
-    @Bind(R.id.password) EditText mPasswordView;
+    @Bind(R.id.input_email) EditText emailText;
+    @Bind(R.id.input_password) EditText passwordText;
+    @Bind(R.id.sign_in_button) Button signInButton;
     private LoginPresenter loginPresenter;
     private ProgressDialog progressDialog;
 
@@ -49,24 +53,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter.stop();
     }
 
-    @OnClick(R.id.email_sign_in_button)
+    @OnClick(R.id.sign_in_button)
     public void attemptLogin() {
 
         // Reset errors
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+//        emailInputLayout.setError(null);
+//        passwordInputLayout.setError(null);
+
+        showProgress();
 
         // Get values at the time of the login attempt
-        String username = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = emailText.getText().toString();
+        String password = passwordText.getText().toString();
 
         loginPresenter.validateCredentials(username, password);
     }
 
     @Override
     public void showProgress() {
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setMessage("Signing In");
+        progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
@@ -78,12 +85,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setupUsernameError(String usernameError) {
-        mEmailView.setError(usernameError);
+        emailText.setError(usernameError);
     }
 
     @Override
     public void setupPasswordError() {
-        mPasswordView.setError(getString(R.string.error_field_required));
+        passwordText.setError(getString(R.string.error_field_required));
     }
 
     @Override

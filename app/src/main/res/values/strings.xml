@@ -10,9 +10,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_accept">Accept</string>
 
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_field_required">This field cannot be blank</string>
     <string name="error_no_connection_title">No connection</string>
     <string name="error_no_connection_description">Unable to connect with "gitlab.com"</string>
     <string name="error_sign_in_failed_title">Sign in failed</string>

@@ -38,24 +38,26 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     public void validateCredentials(String username, String password) {
-        loginView.showProgress();
+//        loginView.showProgress();
 
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password)) {
             loginView.setupPasswordError();
             loginView.hideProgress();
+            return;
         }
 
         // Check for a valid username address.
         if (TextUtils.isEmpty(username)) {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
             loginView.hideProgress();
-        } else {
-            mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
-                    this::onSessionReceived,
-                    this::manageError
-            );
+            return;
         }
+
+        mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
+                this::onSessionReceived,
+                this::manageError
+        );
     }
 
     public void onSessionReceived(Session session) {
@@ -68,6 +70,5 @@ public class LoginPresenter implements Presenter<LoginView> {
         Log.e("LoginError", error.getMessage(), error);
 
         loginView.showConnectionError((RetrofitError) error);
-
     }
 }
