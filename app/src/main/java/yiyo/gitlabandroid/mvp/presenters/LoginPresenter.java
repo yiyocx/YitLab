@@ -37,27 +37,39 @@ public class LoginPresenter implements Presenter<LoginView> {
         loginView = view;
     }
 
-    public void validateCredentials(String username, String password) {
-//        loginView.showProgress();
+    public void login(String username, String password) {
+        loginView.showProgress();
+
+        if (validate(username, password)) {
+            mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
+                    this::onSessionReceived,
+                    this::manageError
+            );
+        } else {
+            loginView.hideProgress();
+        }
+    }
+
+    public boolean validate(String username, String password) {
+        boolean valid = true;
 
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password)) {
-            loginView.setupPasswordError();
-            loginView.hideProgress();
-            return;
+            loginView.setupPasswordError(loginView.getContext().getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            loginView.setupPasswordError(null);
         }
 
         // Check for a valid username address.
         if (TextUtils.isEmpty(username)) {
             loginView.setupUsernameError(loginView.getContext().getString(R.string.error_field_required));
-            loginView.hideProgress();
-            return;
+            valid = false;
+        } else {
+            loginView.setupUsernameError(null);
         }
 
-        mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
-                this::onSessionReceived,
-                this::manageError
-        );
+        return valid;
     }
 
     public void onSessionReceived(Session session) {

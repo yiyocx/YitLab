@@ -7,10 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 
 import java.net.HttpURLConnection;
 
@@ -25,8 +22,8 @@ import yiyo.gitlabandroid.mvp.views.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    @Bind(R.id.input_email) EditText emailText;
-    @Bind(R.id.input_password) EditText passwordText;
+    @Bind(R.id.email_text_input_layout) TextInputLayout emailInputLayout;
+    @Bind(R.id.password_text_input_layout) TextInputLayout passwordInputLayout;
     @Bind(R.id.sign_in_button) Button signInButton;
     private LoginPresenter loginPresenter;
     private ProgressDialog progressDialog;
@@ -55,18 +52,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @OnClick(R.id.sign_in_button)
     public void attemptLogin() {
-
-        // Reset errors
-//        emailInputLayout.setError(null);
-//        passwordInputLayout.setError(null);
-
-        showProgress();
-
         // Get values at the time of the login attempt
-        String username = emailText.getText().toString();
-        String password = passwordText.getText().toString();
+        String username = emailInputLayout.getEditText().getText().toString();
+        String password = passwordInputLayout.getEditText().getText().toString();
 
-        loginPresenter.validateCredentials(username, password);
+        loginPresenter.login(username, password);
     }
 
     @Override
@@ -85,12 +75,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setupUsernameError(String usernameError) {
-        emailText.setError(usernameError);
+        emailInputLayout.setError(usernameError);
     }
 
     @Override
-    public void setupPasswordError() {
-        passwordText.setError(getString(R.string.error_field_required));
+    public void setupPasswordError(String passwordError) {
+        passwordInputLayout.setError(passwordError);
     }
 
     @Override
