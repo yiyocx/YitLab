@@ -1,5 +1,6 @@
 package yiyo.gitlabandroid.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +9,24 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
+import yiyo.gitlabandroid.utils.Configuration;
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private NavigationViewFragment mNavigationViewFragment;
+    private Configuration configuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        configuration = new Configuration(MainActivity.this);
+
+        if (!configuration.isLoggedIn()) {
+            logoutUser();
+        }
 
         ButterKnife.bind(this);
         initializeNavigationView();
@@ -29,6 +38,26 @@ public class MainActivity extends AppCompatActivity {
 
         mNavigationViewFragment.setUp(R.id.navigation_fragment,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    private void logoutUser() {
+        configuration.closeSession();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * Para que al presionar el boton back el drawer se oculte
+     */
+    @Override
+    public void onBackPressed() {
+
+        if(mNavigationViewFragment.isDrawerOpen()){
+            mNavigationViewFragment.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

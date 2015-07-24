@@ -4,19 +4,19 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import retrofit.RetrofitError;
-import rx.Subscription;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.domain.LoginUsecase;
 import yiyo.gitlabandroid.model.rest.models.Session;
 import yiyo.gitlabandroid.mvp.views.LoginView;
+import yiyo.gitlabandroid.utils.Configuration;
 
 /**
  * Created by yiyo on 11/07/15.
  */
 public class LoginPresenter implements Presenter<LoginView> {
+    private static final String TAG = LoginPresenter.class.getSimpleName();
 
     private LoginView loginView;
-    private Subscription mSessionSubscription;
 
     public LoginPresenter() {
 
@@ -41,7 +41,7 @@ public class LoginPresenter implements Presenter<LoginView> {
         loginView.showProgress();
 
         if (validate(username, password)) {
-            mSessionSubscription = new LoginUsecase(username, password).execute().subscribe(
+            new LoginUsecase(username, password).execute().subscribe(
                     this::onSessionReceived,
                     this::manageError
             );
@@ -73,13 +73,22 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     public void onSessionReceived(Session session) {
+        Configuration configuration = new Configuration(loginView.getContext());
+        boolean sessionCreated = configuration.createSession(session.getName(), session.getUsername(), session.getEmail(),
+                session.getPrivateToken(), session.getId());
         loginView.hideProgress();
-        loginView.navigateToHome();
+
+        if (sessionCreated) {
+            loginView.navigateToHome();
+            Log.i(TAG, "The user has successfully logged");
+        } else {
+            Log.e(TAG, "There was a problem creating the session in the SharedPreferences");
+        }
     }
 
     public void manageError(Throwable error) {
         loginView.hideProgress();
-        Log.e("LoginError", error.getMessage(), error);
+        Log.e(TAG, error.getMessage(), error);
 
         loginView.showConnectionError((RetrofitError) error);
     }

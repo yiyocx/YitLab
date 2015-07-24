@@ -18,6 +18,7 @@ import retrofit.RetrofitError;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.mvp.presenters.LoginPresenter;
 import yiyo.gitlabandroid.mvp.views.LoginView;
+import yiyo.gitlabandroid.utils.Configuration;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -32,6 +33,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Configuration configuration = new Configuration(LoginActivity.this);
+
+        if (configuration.isLoggedIn()) {
+            // El usuario ya esta logueado. Se redirige a la Actividad Principal
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         ButterKnife.bind(this);
         loginPresenter = new LoginPresenter();

@@ -27,4 +27,12 @@ public class NavigationViewFragment extends Fragment {
         mDrawerLayout = drawerLayout;
 
     }
+
+    public boolean isDrawerOpen() {
+        return mDrawerLayout.isDrawerOpen(mNavigationView);
+    }
+
+    public void closeDrawer() {
+        mDrawerLayout.closeDrawers();
+    }
 }
