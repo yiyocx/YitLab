@@ -3,10 +3,13 @@ package yiyo.gitlabandroid.views.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.utils.Configuration;
@@ -14,6 +17,8 @@ import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     private NavigationViewFragment mNavigationViewFragment;
     private Configuration configuration;
 
@@ -29,7 +34,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ButterKnife.bind(this);
+        setupToolbar();
         initializeNavigationView();
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(mToolbar);
+
+        // Show menu icon
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     public void initializeNavigationView() {
