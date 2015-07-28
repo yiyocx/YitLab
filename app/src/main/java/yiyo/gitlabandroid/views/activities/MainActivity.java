@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,7 +16,7 @@ import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.utils.Configuration;
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationViewFragment.NavigationDrawerCallbacks {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         setupToolbar();
-        initializeNavigationView();
+        setupNavigationView();
     }
 
     private void setupToolbar() {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void initializeNavigationView() {
+    public void setupNavigationView() {
         mNavigationViewFragment = (NavigationViewFragment) getFragmentManager()
                 .findFragmentById(R.id.navigation_fragment);
 
@@ -97,7 +98,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void some(MenuItem item) {
-
+    /** Pasando la opción del menú elegida para mostrar el Fragment Correspondiente */
+    @Override
+    public void onNavigationDrawerItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_item_1:
+                Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.navigation_item_2:
+                Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.navigation_item_3:
+                Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
     }
 }
