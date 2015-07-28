@@ -2,6 +2,7 @@ package yiyo.gitlabandroid.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 public class MainActivity extends AppCompatActivity implements NavigationViewFragment.NavigationDrawerCallbacks {
 
     @Bind(R.id.toolbar) Toolbar mToolbar;
+    @Bind(R.id.tab_layout) TabLayout mTabLayout;
     private NavigationViewFragment mNavigationViewFragment;
     private Configuration configuration;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
         ButterKnife.bind(this);
         setupToolbar();
         setupNavigationView();
+        setupTabLayout();
     }
 
     private void setupToolbar() {
@@ -54,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
 
         mNavigationViewFragment.setUp(R.id.navigation_fragment,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    private void setupTabLayout() {
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        mTabLayout.addTab(mTabLayout.newTab().setText("News"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Repositories"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Following"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Followers"));
     }
 
     private void logoutUser() {
