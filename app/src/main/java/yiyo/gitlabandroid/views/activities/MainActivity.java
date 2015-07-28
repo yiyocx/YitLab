@@ -18,8 +18,7 @@ import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationViewFragment.NavigationDrawerCallbacks {
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    @Bind(R.id.toolbar) Toolbar mToolbar;
     private NavigationViewFragment mNavigationViewFragment;
     private Configuration configuration;
 
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
 
         // Show menu icon
         final ActionBar ab = getSupportActionBar();
+        assert ab != null;
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
     }
