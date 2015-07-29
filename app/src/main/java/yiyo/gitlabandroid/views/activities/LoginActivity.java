@@ -3,6 +3,7 @@ package yiyo.gitlabandroid.views.activities;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -110,12 +111,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             alertBuilder = new AlertDialog.Builder(LoginActivity.this)
                     .setTitle(getString(R.string.error_no_connection_title))
                     .setMessage(getString(R.string.error_no_connection_description))
-                    .setPositiveButton(getString(R.string.action_retry), (dialog, which) -> {
-                        dialog.dismiss();
-                        attemptLogin();
+                    .setPositiveButton(getString(R.string.action_retry), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            LoginActivity.this.attemptLogin();
+                        }
                     })
-                    .setNegativeButton(getString(R.string.action_cancel), (dialog, which) -> {
-                        dialog.cancel();
+                    .setNegativeButton(getString(R.string.action_cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
                     })
                     .setCancelable(false);
             alertBuilder.show();
@@ -124,8 +131,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             alertBuilder = new AlertDialog.Builder(LoginActivity.this)
                     .setTitle(getString(R.string.error_sign_in_failed_title))
                     .setMessage(getString(R.string.error_sign_in_failed_description))
-                    .setPositiveButton(getString(R.string.action_accept), (dialog, i) -> {
-                        dialog.dismiss();
+                    .setPositiveButton(getString(R.string.action_accept), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+                        }
                     });
             alertBuilder.show();
         } else if (error.getKind() == RetrofitError.Kind.UNEXPECTED) {
@@ -133,8 +143,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             alertBuilder = new AlertDialog.Builder(LoginActivity.this)
                     .setTitle(getString(R.string.error_unexpected_title))
                     .setMessage(getString(R.string.error_unexpected_description))
-                    .setPositiveButton("OK", (dialog, i) -> {
-                        dialog.dismiss();
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+                        }
                     });
             alertBuilder.show();
         }

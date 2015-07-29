@@ -34,11 +34,14 @@ public class NavigationViewFragment extends Fragment {
         mNavigationView = (NavigationView) getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
 
-        mNavigationView.setNavigationItemSelectedListener(menuItem -> {
-            menuItem.setChecked(true);
-            mCallbacks.onNavigationDrawerItemSelected(menuItem);
-            closeDrawer();
-            return true;
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mCallbacks.onNavigationDrawerItemSelected(menuItem);
+                NavigationViewFragment.this.closeDrawer();
+                return true;
+            }
         });
     }
 

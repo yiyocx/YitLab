@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import retrofit.RetrofitError;
+import rx.functions.Action1;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.domain.LoginUsecase;
 import yiyo.gitlabandroid.model.rest.models.Session;
@@ -42,8 +43,18 @@ public class LoginPresenter implements Presenter<LoginView> {
 
         if (validate(username, password)) {
             new LoginUsecase(username, password).execute().subscribe(
-                    this::onSessionReceived,
-                    this::manageError
+                    new Action1<Session>() {
+                        @Override
+                        public void call(Session session) {
+                            LoginPresenter.this.onSessionReceived(session);
+                        }
+                    },
+                    new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable error) {
+                            LoginPresenter.this.manageError(error);
+                        }
+                    }
             );
         } else {
             loginView.hideProgress();
