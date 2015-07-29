@@ -39,7 +39,7 @@ public class NavigationViewFragment extends Fragment {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 menuItem.setChecked(true);
                 mCallbacks.onNavigationDrawerItemSelected(menuItem);
-                NavigationViewFragment.this.closeDrawer();
+                closeDrawer();
                 return true;
             }
         });

@@ -3,6 +3,8 @@ package yiyo.gitlabandroid.views.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.utils.Configuration;
+import yiyo.gitlabandroid.views.fragments.HomeFragment;
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationViewFragment.NavigationDrawerCallbacks {
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
     @Bind(R.id.tab_layout) TabLayout mTabLayout;
     private NavigationViewFragment mNavigationViewFragment;
     private Configuration configuration;
+    private Fragment mCurrentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
     }
 
     private void setupTabLayout() {
-        mTabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
         mTabLayout.addTab(mTabLayout.newTab().setText("News"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Repositories"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("Following"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("Followers"));
     }
 
     private void logoutUser() {
@@ -112,8 +113,14 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
     /** Pasando la opción del menú elegida para mostrar el Fragment Correspondiente */
     @Override
     public void onNavigationDrawerItemSelected(MenuItem menuItem) {
+
+        setTitle(menuItem.getTitle());
+        Class fragmentClass = null;
+
+        // Actualizar el contenido principal reemplazando los fragments
         switch (menuItem.getItemId()) {
             case R.id.navigation_item_1:
+                fragmentClass = HomeFragment.class;
                 Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.navigation_item_2:
@@ -123,7 +130,17 @@ public class MainActivity extends AppCompatActivity implements NavigationViewFra
                 Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             default:
+                fragmentClass = HomeFragment.class;
                 break;
         }
+
+        try {
+            mCurrentFragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main_content, mCurrentFragment).commit();
     }
 }

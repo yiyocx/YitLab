@@ -8,7 +8,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
 
         <item name="colorButtonNormal">@color/colorPrimaryDark</item>
     </style>
@@ -22,6 +21,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
 
         <item name="android:windowBackground">@color/colorPrimary</item>
 
@@ -30,5 +30,12 @@
         <item name="android:textColorHint">@android:color/white</item>
 
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
+    </style>
+
+    <!-- Tema para el TabLayout -->
+    <style name="Theme.TabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextColor">@color/colorPrimaryLight</item>
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
     </style>
 </resources>
