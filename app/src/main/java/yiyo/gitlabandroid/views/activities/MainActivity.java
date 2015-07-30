@@ -13,11 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import yiyo.gitlabandroid.HomeFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
 import yiyo.gitlabandroid.utils.Configuration;
-import yiyo.gitlabandroid.views.fragments.HomeFragment;
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationViewFragment.NavigationDrawerCallbacks {
