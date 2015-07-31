@@ -28,7 +28,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.jetbrains.kotlin:kotlin-android-extensions:0.12.613'
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     }
 }
 
@@ -36,7 +36,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Kotlin
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.613'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Square
     compile 'com.squareup.retrofit:retrofit:1.9.0'

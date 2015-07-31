@@ -6,16 +6,16 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.view.View
+import kotlinx.android.synthetic.activity_login.email_text_input_layout
+import kotlinx.android.synthetic.activity_login.password_text_input_layout
 import retrofit.RetrofitError
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.mvp.presenters.LoginPresenter
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
 import java.net.HttpURLConnection
-import kotlinx.android.synthetic.activity_login.*
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
         loginPresenter!!.stop()
     }
 
-    public fun attemptLogin() {
+    fun attemptLogin(view: View?) {
         // Get values at the time of the login attempt
         val username = email_text_input_layout.getEditText().getText().toString()
         val password = password_text_input_layout.getEditText().getText().toString()
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             alertBuilder = AlertDialog.Builder(this@LoginActivity).setTitle(getString(R.string.error_no_connection_title)).setMessage(getString(R.string.error_no_connection_description)).setPositiveButton(getString(R.string.action_retry), object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface, which: Int) {
                     dialog.dismiss()
-                    this@LoginActivity.attemptLogin()
+                    this@LoginActivity.attemptLogin(null)
                 }
             }).setNegativeButton(getString(R.string.action_cancel), object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface, which: Int) {
