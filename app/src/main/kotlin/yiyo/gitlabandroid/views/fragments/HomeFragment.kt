@@ -1,4 +1,4 @@
-package yiyo.gitlabandroid
+package yiyo.gitlabandroid.views.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

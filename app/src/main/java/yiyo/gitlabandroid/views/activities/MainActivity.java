@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import yiyo.gitlabandroid.HomeFragment;
+import yiyo.gitlabandroid.views.fragments.HomeFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import yiyo.gitlabandroid.R;
