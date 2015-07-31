@@ -1,29 +1,23 @@
-package yiyo.gitlabandroid.mvp.presenters;
+package yiyo.gitlabandroid.mvp.presenters
 
-import android.view.View;
+import android.view.View
 
 /**
  * Created by yiyo on 11/07/15.
- *
+
  * Interface that represents a Presenter in the model view presenter Pattern
  * defines methods to manage the Activity / Fragment lifecycle
  */
-public interface Presenter<T> {
+interface Presenter {
 
     /**
      * Called when the presenter is initialized
      */
-    void start();
+    fun start()
 
     /**
      * Called when the presenter is stop, i.e when an activity
      * or a fragment finishes
      */
-    void stop();
-
-    /**
-     * Called for associates the presenter to a view
-     * @param view
-     */
-    void attachView (T view);
+    fun stop()
 }

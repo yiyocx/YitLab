@@ -8,40 +8,47 @@ import android.content.SharedPreferences
  */
 class Configuration(val mContext: Context) {
 
-    private val sharedPreferences: SharedPreferences
+    public val sharedPreferences: SharedPreferences
     private val editor: SharedPreferences.Editor
 
+    // Nombre del SharedPreferences de la aplicación
+    private val SHARED_PREFS_NAME = "GITLAB_ANDROID_PREFS"
+
+    // Llaves del SharedPreferences
+    private val IS_LOGGED_IN = "is_logged_in"
+    private val NAME = "name"
+    private val USERNAME = "username"
+    private val EMAIL = "email"
+    private val PRIVATE_TOKEN = "private_token"
+    private val USER_ID = "user_id"
+
     init {
-        sharedPreferences = this.mContext.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        sharedPreferences = mContext.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
         editor.apply()
     }
-
-    public fun createSession(name: String, username: String, email: String, privateToken: String?, id: Int?): Boolean {
-        if (privateToken != null) {
-            editor.putString(NAME, name)
-            editor.putString(USERNAME, username)
-            editor.putString(EMAIL, email)
-            editor.putString(PRIVATE_TOKEN, privateToken)
-            editor.putInt(USER_ID, id!!)
-            editor.putBoolean(IS_LOGGED_IN, true)
-            return editor.commit()
-        } else {
-            return false
-        }
+    /**
+     * Create session for a user
+     */
+    fun createSession(name: String, username: String, email: String, privateToken: String, id: Int): Boolean {
+        editor.putString(NAME, name)
+        editor.putString(USERNAME, username)
+        editor.putString(EMAIL, email)
+        editor.putString(PRIVATE_TOKEN, privateToken)
+        editor.putInt(USER_ID, id)
+        editor.putBoolean(IS_LOGGED_IN, true)
+        return editor.commit()
     }
 
     /**
      * Check for login state
      */
-    public fun isLoggedIn(): Boolean {
-        return sharedPreferences.getBoolean(IS_LOGGED_IN, false)
-    }
+    fun isLoggedIn() = sharedPreferences.getBoolean(IS_LOGGED_IN, false)
 
     /**
      * Cleaning all data from Shared Preferences
      */
-    public fun closeSession() {
+    fun closeSession() {
         editor.remove(NAME)
         editor.remove(USERNAME)
         editor.remove(EMAIL)
@@ -49,18 +56,5 @@ class Configuration(val mContext: Context) {
         editor.remove(USER_ID)
         editor.putBoolean(IS_LOGGED_IN, false)
         editor.apply()
-    }
-
-    companion object {
-
-        private val SHARED_PREFS_NAME = "GITLAB_ANDROID_PREFS"
-
-        // Llaves del SharedPreferences
-        private val IS_LOGGED_IN = "is_logged_in"
-        private val NAME = "name"
-        private val USERNAME = "username"
-        private val EMAIL = "email"
-        private val PRIVATE_TOKEN = "private_token"
-        private val USER_ID = "user_id"
     }
 }

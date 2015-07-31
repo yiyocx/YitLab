@@ -31,7 +31,6 @@ dependencies {
 
     // Square
     compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
 
     // Google
     compile 'com.android.support:appcompat-v7:22.2.1'
