@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
      * Para que al presionar el boton back el drawer se oculte
      */
     override fun onBackPressed() {
-
         if (mNavigationViewFragment!!.isDrawerOpen()) {
             mNavigationViewFragment!!.closeDrawer()
         } else {
@@ -90,43 +89,33 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
-        when (item!!.getItemId()) {
+        return when (item!!.getItemId()) {
             android.R.id.home -> {
                 mNavigationViewFragment!!.openDrawer()
-                return true
+                true
             }
             R.id.action_logout -> {
                 logoutUser()
-                return true
+                true
             }
-            else -> return super<AppCompatActivity>.onOptionsItemSelected(item)
+            else -> super<AppCompatActivity>.onOptionsItemSelected(item)
         }
     }
 
     /** Pasando la opción del menú elegida para mostrar el Fragment Correspondiente  */
     override fun onNavigationDrawerItemSelected(menuItem: MenuItem) {
-
         setTitle(menuItem.getTitle())
-        var fragmentClass: Class<Any>? = null
 
         // Actualizar el contenido principal reemplazando los fragments
         when (menuItem.getItemId()) {
             R.id.navigation_item_1 -> {
-                fragmentClass = javaClass<HomeFragment>()
-                Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show()
+                mCurrentFragment = HomeFragment()
+                setTitle(R.string.app_name)
             }
             R.id.navigation_item_2 -> Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show()
             R.id.navigation_item_3 -> Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show()
-            else -> fragmentClass = javaClass<HomeFragment>()
+            else -> mCurrentFragment = HomeFragment()
         }
-
-        try {
-            mCurrentFragment = fragmentClass!!.newInstance() as Fragment
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
 
         val fragmentManager = getSupportFragmentManager()
         fragmentManager.beginTransaction().replace(R.id.main_content, mCurrentFragment).commit()
