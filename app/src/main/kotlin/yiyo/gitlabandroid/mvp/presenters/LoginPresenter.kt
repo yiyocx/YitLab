@@ -7,6 +7,7 @@ import retrofit.RetrofitError
 import rx.functions.Action1
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.domain.LoginUsecase
+import yiyo.gitlabandroid.utils.extension.tag
 import yiyo.gitlabandroid.model.rest.models.Session
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
@@ -15,8 +16,6 @@ import yiyo.gitlabandroid.utils.Configuration
  * Created by yiyo on 11/07/15.
  */
 class LoginPresenter(val loginView: LoginView) : Presenter {
-
-    private val TAG = javaClass<LoginPresenter>().getSimpleName()
 
     override fun start() {
         // Unused
@@ -76,15 +75,15 @@ class LoginPresenter(val loginView: LoginView) : Presenter {
 
         if (sessionCreated) {
             loginView.navigateToHome()
-            Log.i(TAG, "The user has successfully logged")
+            Log.i(tag(), "The user has successfully logged")
         } else {
-            Log.e(TAG, "There was a problem creating the session in the SharedPreferences")
+            Log.e(tag(), "There was a problem creating the session in the SharedPreferences")
         }
     }
 
     fun manageError(error: Throwable) {
         loginView.hideProgress()
-        Log.e(TAG, error.getMessage(), error)
+        Log.e(tag(), error.getMessage(), error)
 
         loginView.showConnectionError(error as RetrofitError)
     }
