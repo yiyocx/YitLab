@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         ab.setDisplayHomeAsUpEnabled(true)
     }
 
-    public fun setupNavigationView() {
+    fun setupNavigationView() {
         mNavigationViewFragment = getFragmentManager().findFragmentById(R.id.navigation_fragment) as NavigationViewFragment
 
         mNavigationViewFragment!!.setUp(R.id.navigation_fragment, findViewById(R.id.drawer_layout) as DrawerLayout)

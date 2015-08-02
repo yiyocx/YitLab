@@ -40,12 +40,12 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onStart() {
         super<AppCompatActivity>.onStart()
-        loginPresenter!!.start()
+        loginPresenter?.start()
     }
 
     override fun onStop() {
         super<AppCompatActivity>.onStop()
-        loginPresenter!!.stop()
+        loginPresenter?.stop()
     }
 
     fun attemptLogin(view: View?) {
