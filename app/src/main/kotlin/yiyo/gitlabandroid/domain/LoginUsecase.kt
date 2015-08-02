@@ -5,7 +5,7 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import yiyo.gitlabandroid.model.rest.RestClient
-import yiyo.gitlabandroid.model.rest.models.Session
+import yiyo.gitlabandroid.model.entities.Session
 
 /**
  * Created by yiyo on 12/07/15.

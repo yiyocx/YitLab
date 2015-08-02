@@ -5,7 +5,7 @@ import com.google.gson.JsonObject
 import retrofit.http.Body
 import retrofit.http.POST
 import rx.Observable
-import yiyo.gitlabandroid.model.rest.models.Session
+import yiyo.gitlabandroid.model.entities.Session
 
 /**
  * Created by yiyo on 12/07/15.

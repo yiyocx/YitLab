@@ -8,7 +8,7 @@ import rx.functions.Action1
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.domain.LoginUsecase
 import yiyo.gitlabandroid.utils.extension.tag
-import yiyo.gitlabandroid.model.rest.models.Session
+import yiyo.gitlabandroid.model.entities.Session
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
 
@@ -69,8 +69,8 @@ class LoginPresenter(val loginView: LoginView) : Presenter {
     fun onSessionReceived(session: Session) {
         val configuration = Configuration(loginView.getContext())
         val sessionCreated = configuration.createSession(
-                session.getName(), session.getUsername(), session.getEmail(),
-                session.getPrivateToken(), session.getId())
+                session.name, session.username, session.email,
+                session.privateToken, session.id)
         loginView.hideProgress()
 
         if (sessionCreated) {
