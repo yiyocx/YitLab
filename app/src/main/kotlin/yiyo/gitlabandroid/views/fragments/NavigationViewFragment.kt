@@ -10,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.navigation_header.*
 
 import yiyo.gitlabandroid.R
+import yiyo.gitlabandroid.utils.Configuration
 
 class NavigationViewFragment : Fragment() {
 
@@ -32,14 +34,30 @@ class NavigationViewFragment : Fragment() {
         mNavigationView = getActivity().findViewById(fragmentId) as NavigationView
         mDrawerLayout = drawerLayout
 
-        mNavigationView!!.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener {
-            override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-                menuItem.setChecked(true)
-                mCallbacks!!.onNavigationDrawerItemSelected(menuItem)
-                closeDrawer()
-                return true
-            }
+        // Agregar datos del usuario al NavigationView
+        val configuration = Configuration(getActivity())
+
+        if (configuration.isLoggedIn()) {
+            val userDetails = configuration.getUserDetails()
+            name.setText(userDetails.get(Configuration.NAME))
+            username.setText(userDetails.get(Configuration.USERNAME))
+        }
+
+        mNavigationView?.setNavigationItemSelectedListener(fun (menuItem: MenuItem): Boolean {
+            menuItem.setChecked(true)
+            mCallbacks?.onNavigationDrawerItemSelected(menuItem)
+            closeDrawer()
+            return true
         })
+
+        // Se elije el fragmento que se mostrara por defecto al iniciar el navigation view
+        setDefaultMenuItem(R.id.navigation_item_1);
+    }
+
+    private fun setDefaultMenuItem(menuItemId: Int) {
+        val menuItem = mNavigationView?.getMenu()?.findItem(menuItemId)
+        menuItem?.setChecked(true)
+        mCallbacks?.onNavigationDrawerItemSelected(menuItem!!)
     }
 
     public fun isDrawerOpen(): Boolean {
@@ -47,18 +65,18 @@ class NavigationViewFragment : Fragment() {
     }
 
     public fun closeDrawer() {
-        mDrawerLayout!!.closeDrawers()
+        mDrawerLayout?.closeDrawers()
     }
 
     public fun openDrawer() {
-        mDrawerLayout!!.openDrawer(GravityCompat.START)
+        mDrawerLayout?.openDrawer(GravityCompat.START)
     }
 
     override fun onAttach(activity: Activity?) {
         super.onAttach(activity)
 
         try {
-            mCallbacks = activity as NavigationDrawerCallbacks?
+            mCallbacks = activity as NavigationDrawerCallbacks
         } catch (e: ClassCastException) {
             throw ClassCastException("Activity must implement NavigationDrawerCallbacks")
         }

@@ -18,6 +18,7 @@ import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
 import yiyo.gitlabandroid.views.fragments.NavigationViewFragment
 import kotlinx.android.synthetic.activity_main.*
+import yiyo.gitlabandroid.utils.extension.toast
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {
 
@@ -48,15 +49,14 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         // Show menu icon
         val ab = getSupportActionBar()
-        assert(ab != null)
-        ab!!.setHomeAsUpIndicator(R.drawable.ic_menu)
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu)
         ab.setDisplayHomeAsUpEnabled(true)
     }
 
     fun setupNavigationView() {
         mNavigationViewFragment = getFragmentManager().findFragmentById(R.id.navigation_fragment) as NavigationViewFragment
 
-        mNavigationViewFragment!!.setUp(R.id.navigation_fragment, findViewById(R.id.drawer_layout) as DrawerLayout)
+        mNavigationViewFragment?.setUp(R.id.navigation_fragment, findViewById(R.id.drawer_layout) as DrawerLayout)
     }
 
     private fun setupTabLayout() {
@@ -112,8 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
                 mCurrentFragment = HomeFragment()
                 setTitle(R.string.app_name)
             }
-            R.id.navigation_item_2 -> Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show()
-            R.id.navigation_item_3 -> Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show()
+            R.id.navigation_item_2, R.id.navigation_item_3 -> toast(menuItem.getTitle())
             else -> mCurrentFragment = HomeFragment()
         }
 

@@ -9,14 +9,14 @@
     android:gravity="bottom">
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
-        android:id="@+id/user_email"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"

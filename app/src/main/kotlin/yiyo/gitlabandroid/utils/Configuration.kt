@@ -2,25 +2,28 @@ package yiyo.gitlabandroid.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.util.*
 
 /**
- * Created by yiyo on 24/07/15.
- */
+* Created by yiyo on 24/07/15.
+*/
 class Configuration(val mContext: Context) {
 
     public val sharedPreferences: SharedPreferences
     private val editor: SharedPreferences.Editor
 
-    // Nombre del SharedPreferences de la aplicación
-    private val SHARED_PREFS_NAME = "GITLAB_ANDROID_PREFS"
+    companion object {
+        // Nombre del SharedPreferences de la aplicación
+        private val SHARED_PREFS_NAME = "GITLAB_ANDROID_PREFS"
 
-    // Llaves del SharedPreferences
-    private val IS_LOGGED_IN = "is_logged_in"
-    private val NAME = "name"
-    private val USERNAME = "username"
-    private val EMAIL = "email"
-    private val PRIVATE_TOKEN = "private_token"
-    private val USER_ID = "user_id"
+        // Llaves del SharedPreferences
+        private val IS_LOGGED_IN = "is_logged_in"
+        val NAME = "name"
+        val USERNAME = "username"
+        private val EMAIL = "email"
+        private val PRIVATE_TOKEN = "private_token"
+        private val USER_ID = "user_id"
+    }
 
     init {
         sharedPreferences = mContext.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
@@ -57,4 +60,8 @@ class Configuration(val mContext: Context) {
         editor.putBoolean(IS_LOGGED_IN, false)
         editor.apply()
     }
+
+    fun getUserDetails() = hashMapOf(
+            NAME  to sharedPreferences.getString(NAME, null),
+            USERNAME to sharedPreferences.getString(USERNAME, null))
 }
