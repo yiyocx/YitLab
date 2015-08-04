@@ -29,7 +29,7 @@ class LoginPresenter(val loginView: LoginView) : Presenter {
         loginView.showProgress()
 
         if (validate(username, password)) {
-            LoginUsecase(username, password).execute()
+            LoginUsecase(username, password, loginView.getContext()).execute()
                 .subscribe(object : Action1<Session> {
                     override fun call(session: Session) {
                         onSessionReceived(session)

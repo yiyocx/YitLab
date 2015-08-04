@@ -64,4 +64,6 @@ class Configuration(val mContext: Context) {
     fun getUserDetails() = hashMapOf(
             NAME  to sharedPreferences.getString(NAME, null),
             USERNAME to sharedPreferences.getString(USERNAME, null))
+
+    fun getPrivateToken() = sharedPreferences.getString(PRIVATE_TOKEN, null)
 }

@@ -1,5 +1,6 @@
 package yiyo.gitlabandroid.domain
 
+import android.content.Context
 import com.google.gson.JsonObject
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -10,10 +11,10 @@ import yiyo.gitlabandroid.model.entities.Session
 /**
  * Created by yiyo on 12/07/15.
  */
-class LoginUsecase(val username: String, val password: String) : Usecase<Session> {
+class LoginUsecase(val username: String, val password: String, val context: Context) : Usecase<Session> {
 
     fun login(): Observable<Session> {
-        val apiService = RestClient.apiService
+        val apiService = RestClient.getApiService(context)
         val credentials = JsonObject()
 
         if (isEmail(username)) {
