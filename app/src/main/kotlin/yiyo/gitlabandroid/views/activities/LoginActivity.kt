@@ -16,11 +16,12 @@ import yiyo.gitlabandroid.mvp.presenters.LoginPresenter
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
 import java.net.HttpURLConnection
+import kotlin.properties.Delegates
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
-    private var loginPresenter: LoginPresenter? = null
-    private var progressDialog: ProgressDialog? = null
+    private val loginPresenter by Delegates.lazy { LoginPresenter(this@LoginActivity) }
+    private val progressBar by Delegates.lazy { ProgressDialog(this@LoginActivity) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
@@ -34,18 +35,16 @@ class LoginActivity : AppCompatActivity(), LoginView {
             startActivity(intent)
             finish()
         }
-
-        loginPresenter = LoginPresenter(this)
     }
 
     override fun onStart() {
         super<AppCompatActivity>.onStart()
-        loginPresenter?.start()
+        loginPresenter.start()
     }
 
     override fun onStop() {
         super<AppCompatActivity>.onStop()
-        loginPresenter?.stop()
+        loginPresenter.stop()
     }
 
     fun attemptLogin(view: View?) {
@@ -53,19 +52,18 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val username = email_text_input_layout.getEditText().getText().toString()
         val password = password_text_input_layout.getEditText().getText().toString()
 
-        loginPresenter!!.login(username, password)
+        loginPresenter.login(username, password)
     }
 
     override fun showProgress() {
-        progressDialog = ProgressDialog(this@LoginActivity)
-        progressDialog!!.setMessage("Signing In")
-        progressDialog!!.setIndeterminate(true)
-        progressDialog!!.setCancelable(false)
-        progressDialog!!.show()
+        progressBar.setMessage("Signing In")
+        progressBar.setIndeterminate(true)
+        progressBar.setCancelable(false)
+        progressBar.show()
     }
 
     override fun hideProgress() {
-        progressDialog!!.dismiss()
+        progressBar.dismiss()
     }
 
     override fun setupUsernameError(usernameError: String?) {
