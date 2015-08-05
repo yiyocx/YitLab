@@ -5,7 +5,7 @@ import rx.Observable
 /**
  * Created by yiyo on 12/07/15.
  */
-interface Usecase<T> {
+interface UseCase<T> {
 
     fun execute(): Observable<T>
 }

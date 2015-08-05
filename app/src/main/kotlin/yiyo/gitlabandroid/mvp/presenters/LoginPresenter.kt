@@ -6,7 +6,7 @@ import android.util.Log
 import retrofit.RetrofitError
 import rx.functions.Action1
 import yiyo.gitlabandroid.R
-import yiyo.gitlabandroid.domain.LoginUsecase
+import yiyo.gitlabandroid.domain.LoginUseCase
 import yiyo.gitlabandroid.utils.extension.tag
 import yiyo.gitlabandroid.model.entities.Session
 import yiyo.gitlabandroid.mvp.views.LoginView
@@ -29,7 +29,7 @@ class LoginPresenter(val loginView: LoginView) : Presenter {
         loginView.showProgress()
 
         if (validate(username, password)) {
-            LoginUsecase(username, password, loginView.getContext()).execute()
+            LoginUseCase(username, password, loginView.getContext()).execute()
                 .subscribe(object : Action1<Session> {
                     override fun call(session: Session) {
                         onSessionReceived(session)

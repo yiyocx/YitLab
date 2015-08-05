@@ -11,7 +11,7 @@ import yiyo.gitlabandroid.model.entities.Session
 /**
  * Created by yiyo on 12/07/15.
  */
-class LoginUsecase(val username: String, val password: String, val context: Context) : Usecase<Session> {
+class LoginUseCase(val username: String, val password: String, val context: Context) : UseCase<Session> {
 
     fun login(): Observable<Session> {
         val apiService = RestClient.getApiService(context)
