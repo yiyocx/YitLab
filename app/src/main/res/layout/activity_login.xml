@@ -84,8 +84,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="16dp"
-                android:text="@string/action_sign_in"
-                android:onClick="attemptLogin"/>
+                android:text="@string/action_sign_in" />
 
         </LinearLayout>
     </RelativeLayout>
