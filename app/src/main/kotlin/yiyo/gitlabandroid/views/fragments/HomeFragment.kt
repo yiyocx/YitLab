@@ -1,5 +1,6 @@
 package yiyo.gitlabandroid.views.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,17 +9,13 @@ import android.view.ViewGroup
 import retrofit.Callback
 import retrofit.RetrofitError
 import retrofit.client.Response
-import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Action1
-import rx.schedulers.Schedulers
-
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.model.entities.Project
-import yiyo.gitlabandroid.model.entities.Session
 import yiyo.gitlabandroid.model.rest.ApiService
 import yiyo.gitlabandroid.model.rest.RestClient
+import yiyo.gitlabandroid.mvp.views.HomeView
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeView {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -26,7 +23,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super<Fragment>.onViewCreated(view, savedInstanceState)
 
         val apiService :ApiService= RestClient.getApiService(getActivity())
         apiService.getProjects(object : Callback<List<Project>> {
@@ -40,4 +37,6 @@ class HomeFragment : Fragment() {
         })
 
     }
+
+    override fun getContext(): Context = getActivity()
 }

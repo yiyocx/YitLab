@@ -29,16 +29,13 @@ class LoginPresenter(val loginView: LoginView) : Presenter {
         loginView.showProgress()
 
         if (validate(username, password)) {
-            LoginUseCase(username, password, loginView.getContext()).execute()
-                .subscribe(object : Action1<Session> {
-                    override fun call(session: Session) {
-                        onSessionReceived(session)
-                    }
-                }, object : Action1<Throwable> {
-                    override fun call(error: Throwable) {
-                        manageError(error)
-                    }
-                })
+            
+            LoginUseCase(username, password, loginView.getContext())
+                .execute()
+                .subscribe(
+                    { session: Session -> onSessionReceived(session) },
+                    { error: Throwable -> manageError(error) }
+                )
         } else {
             loginView.hideProgress()
         }
