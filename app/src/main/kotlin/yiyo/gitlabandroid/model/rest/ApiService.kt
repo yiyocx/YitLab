@@ -19,5 +19,5 @@ interface ApiService {
     fun signIn(Body credentials: JsonObject): Observable<Session>
 
     GET("/projects")
-    fun getProjects(cb: Callback<List<Project>>): Unit
+    fun getProjects(): Observable<List<Project>>
 }
