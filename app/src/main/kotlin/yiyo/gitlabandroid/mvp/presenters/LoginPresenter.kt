@@ -15,7 +15,7 @@ import yiyo.gitlabandroid.utils.Configuration
 /**
  * Created by yiyo on 11/07/15.
  */
-class LoginPresenter(val loginView: LoginView) : Presenter {
+class LoginPresenter(private val loginView: LoginView) : Presenter {
 
     override fun start() {
         // Unused

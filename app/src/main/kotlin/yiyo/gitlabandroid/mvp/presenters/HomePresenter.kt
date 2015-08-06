@@ -1,15 +1,17 @@
 package yiyo.gitlabandroid.mvp.presenters
 
+import yiyo.gitlabandroid.mvp.views.HomeView
+
 /**
  * Created by yiyo on 5/08/15.
  */
-public class HomePresenter : Presenter {
-
-    override fun stop() {
-        throw UnsupportedOperationException()
-    }
+public class HomePresenter(private val homeView: HomeView) : Presenter {
 
     override fun start() {
-        throw UnsupportedOperationException()
+        homeView.showLoading()
+    }
+
+    override fun stop() {
+        //Unused
     }
 }
