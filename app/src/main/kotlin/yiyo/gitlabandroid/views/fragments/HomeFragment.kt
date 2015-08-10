@@ -30,17 +30,6 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super<Fragment>.onViewCreated(view, savedInstanceState)
-
-        val apiService :ApiService= RestClient.getApiService(getActivity())
-        apiService.getProjects(object : Callback<List<Project>> {
-            override fun success(t: List<Project>?, response: Response?) {
-                println("Bien ${t} Tamaño ${t?.size()}")
-            }
-
-            override fun failure(error: RetrofitError?) {
-                println("Falle")
-            }
-        })
     }
 
     override fun showLoading() {
@@ -48,7 +37,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun hideLoading() {
-        throw UnsupportedOperationException()
+        projects_progress.setVisibility(View.GONE)
     }
 
     override fun onStart() {
