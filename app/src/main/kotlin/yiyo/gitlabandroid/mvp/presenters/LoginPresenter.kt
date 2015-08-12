@@ -34,7 +34,8 @@ class LoginPresenter(private val loginView: LoginView) : Presenter {
                 .execute()
                 .subscribe(
                     { session: Session -> onSessionReceived(session) },
-                    { error: Throwable -> manageError(error) }
+                    { error: Throwable -> manageError(error) },
+                    { loginView.hideProgress() }
                 )
         } else {
             loginView.hideProgress()
@@ -68,7 +69,6 @@ class LoginPresenter(private val loginView: LoginView) : Presenter {
         val sessionCreated = configuration.createSession(
                 session.name, session.username, session.email,
                 session.privateToken, session.id)
-        loginView.hideProgress()
 
         if (sessionCreated) {
             loginView.navigateToHome()

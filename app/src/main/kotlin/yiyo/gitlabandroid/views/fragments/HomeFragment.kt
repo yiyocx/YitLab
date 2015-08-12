@@ -6,14 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import retrofit.Callback
-import retrofit.RetrofitError
-import retrofit.client.Response
 import yiyo.gitlabandroid.R
-import yiyo.gitlabandroid.model.entities.Project
-import yiyo.gitlabandroid.model.rest.ApiService
-import yiyo.gitlabandroid.model.rest.RestClient
 import yiyo.gitlabandroid.mvp.presenters.HomePresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
 import kotlin.properties.Delegates
