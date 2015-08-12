@@ -38,14 +38,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
         sign_in_button.setOnClickListener { it -> attemptLogin() }
     }
 
-    override fun onStart() {
-        super<AppCompatActivity>.onStart()
-        loginPresenter.start()
+    override fun onResume() {
+        super<AppCompatActivity>.onResume()
+        loginPresenter.onResume()
     }
 
-    override fun onStop() {
-        super<AppCompatActivity>.onStop()
-        loginPresenter.stop()
+    override fun onPause() {
+        super<AppCompatActivity>.onPause()
+        loginPresenter.onPause()
     }
 
     fun attemptLogin() {

@@ -10,18 +10,22 @@ import yiyo.gitlabandroid.mvp.views.HomeView
  */
 public class HomePresenter(private val homeView: HomeView) : Presenter {
 
-    override fun start() {
+    override fun onResume() {
         homeView.showLoading()
         GetProjectsUseCase(RestClient.getApiService(homeView.getContext()))
             .execute()
             .subscribe(
-                {projects: List<Project> -> println("Los Proyectos: $projects")},
+                {projects: List<Project> -> onReceiveProjects(projects)},
                 {error: Throwable -> println("Error: $error")},
                 { homeView.hideLoading() }
             )
     }
 
-    override fun stop() {
+    fun onReceiveProjects(projects: List<Project>) {
+        homeView.showProjects(projects)
+    }
+
+    override fun onPause() {
         //Unused
     }
 }

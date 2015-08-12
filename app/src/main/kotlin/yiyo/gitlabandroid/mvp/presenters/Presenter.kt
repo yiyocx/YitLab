@@ -13,11 +13,11 @@ interface Presenter {
     /**
      * Called when the presenter is initialized
      */
-    fun start()
+    fun onResume()
 
     /**
      * Called when the presenter is stop, i.e when an activity
      * or a fragment finishes
      */
-    fun stop()
+    fun onPause()
 }

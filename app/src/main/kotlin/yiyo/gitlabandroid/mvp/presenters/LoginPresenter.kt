@@ -17,11 +17,11 @@ import yiyo.gitlabandroid.utils.Configuration
  */
 class LoginPresenter(private val loginView: LoginView) : Presenter {
 
-    override fun start() {
+    override fun onResume() {
         // Unused
     }
 
-    override fun stop() {
+    override fun onPause() {
         // Unused
     }
 
