@@ -15,8 +15,8 @@ public class HomePresenter(private val homeView: HomeView) : Presenter {
         GetProjectsUseCase(RestClient.getApiService(homeView.getContext()))
             .execute()
             .subscribe(
-                {projects: List<Project> -> onReceiveProjects(projects)},
-                {error: Throwable -> println("Error: $error")},
+                { projects: List<Project> -> onReceiveProjects(projects) },
+                { error: Throwable -> println("Error: $error") },
                 { homeView.hideLoading() }
             )
     }

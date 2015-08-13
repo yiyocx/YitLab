@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         setupToolbar()
         setupNavigationView()
-//        setupTabLayout()
+        setupTabLayout()
     }
 
     private fun setupToolbar() {
@@ -59,10 +59,10 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         mNavigationViewFragment?.setUp(R.id.navigation_fragment, findViewById(R.id.drawer_layout) as DrawerLayout)
     }
 
-//    private fun setupTabLayout() {
-//        tab_layout.addTab(tab_layout.newTab().setText("News"))
-//        tab_layout.addTab(tab_layout.newTab().setText("Repositories"))
-//    }
+    private fun setupTabLayout() {
+        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_all))
+        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_owned))
+    }
 
     private fun logoutUser() {
         configuration!!.closeSession()

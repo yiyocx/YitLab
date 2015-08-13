@@ -18,7 +18,10 @@
     <string name="error_unexpected_title">Unexpected Error</string>
     <string name="error_unexpected_description">An unexpected error has occurred</string>
 
-    <string name="drawer_menu_1">Home</string>
+    <string name="drawer_menu_1">Projects</string>
     <string name="drawer_menu_2">Titulo 2</string>
     <string name="drawer_menu_3">Titulo 3</string>
+
+    <string name="projects_all">All</string>
+    <string name="projects_owned">Owned</string>
 </resources>
