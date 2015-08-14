@@ -2,30 +2,27 @@ package yiyo.gitlabandroid.views.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-
-import yiyo.gitlabandroid.views.fragments.HomeFragment
+import kotlinx.android.synthetic.activity_main.drawer_layout
+import kotlinx.android.synthetic.activity_main.tab_layout
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
-import yiyo.gitlabandroid.views.fragments.NavigationViewFragment
-import kotlinx.android.synthetic.activity_main.*
 import yiyo.gitlabandroid.utils.extension.toast
+import yiyo.gitlabandroid.views.fragments.HomeFragment
+import yiyo.gitlabandroid.views.fragments.NavigationViewFragment
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {
 
-    private var mNavigationViewFragment: NavigationViewFragment? = null
-    private var configuration: Configuration? = null
-    private var mCurrentFragment: Fragment? = null
-    private var mToolbar: Toolbar? = null
+    private val mNavigationViewFragment by Delegates.lazy {
+        getFragmentManager().findFragmentById(R.id.navigation_fragment) as NavigationViewFragment }
+    private val configuration: Configuration by Delegates.lazy { Configuration(this@MainActivity) }
+    private var mToolbar: Toolbar by Delegates.notNull()
+    private var mCurrentFragment: Fragment by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
@@ -33,9 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         mToolbar = findViewById(R.id.toolbar) as Toolbar
 
-        configuration = Configuration(this@MainActivity)
-
-        if (!configuration!!.isLoggedIn()) {
+        if (!configuration.isLoggedIn()) {
             logoutUser()
         }
 
@@ -54,9 +49,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
     }
 
     fun setupNavigationView() {
-        mNavigationViewFragment = getFragmentManager().findFragmentById(R.id.navigation_fragment) as NavigationViewFragment
-
-        mNavigationViewFragment?.setUp(R.id.navigation_fragment, findViewById(R.id.drawer_layout) as DrawerLayout)
+        mNavigationViewFragment.setUp(R.id.navigation_fragment, drawer_layout)
     }
 
     private fun setupTabLayout() {
@@ -65,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
     }
 
     private fun logoutUser() {
-        configuration!!.closeSession()
+        configuration.closeSession()
         val intent = Intent(this, javaClass<LoginActivity>())
         startActivity(intent)
         finish()
@@ -75,8 +68,8 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
      * Para que al presionar el boton back el drawer se oculte
      */
     override fun onBackPressed() {
-        if (mNavigationViewFragment!!.isDrawerOpen()) {
-            mNavigationViewFragment!!.closeDrawer()
+        if (mNavigationViewFragment.isDrawerOpen()) {
+            mNavigationViewFragment.closeDrawer()
         } else {
             super<AppCompatActivity>.onBackPressed()
         }
@@ -91,7 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item!!.getItemId()) {
             android.R.id.home -> {
-                mNavigationViewFragment!!.openDrawer()
+                mNavigationViewFragment.openDrawer()
                 true
             }
             R.id.action_logout -> {
