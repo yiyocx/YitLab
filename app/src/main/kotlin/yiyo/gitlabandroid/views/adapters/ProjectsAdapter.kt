@@ -20,12 +20,14 @@ class ProjectsAdapter(val projects: List<Project>, val context: Context) : Recyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nameWithNamespace.setText(projects.get(position).nameWithNamespace)
+        holder.name.setText(projects.get(position).name)
+        holder.description.setText(projects.get(position).description)
     }
 
     override fun getItemCount(): Int = projects.size()
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val nameWithNamespace = itemView.findViewById(R.id.project_name_with_namespace) as TextView
+        val name = itemView.findViewById(R.id.project_name) as TextView
+        val description = itemView.findViewById(R.id.project_description) as TextView
     }
 }
