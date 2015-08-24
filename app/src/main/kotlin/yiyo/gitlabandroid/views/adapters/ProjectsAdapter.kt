@@ -20,12 +20,24 @@ class ProjectsAdapter(val projects: List<Project>, val context: Context) : Recyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nameWithNamespace.setText(projects.get(position).nameWithNamespace)
+        holder.name.setText(projects.get(position).name)
+        if (projects.get(position).description.isEmpty()) {
+            holder.description.setText(R.string.projects_no_description)
+        } else {
+            holder.description.setText(projects.get(position).description)
+        }
+        holder.starsCount.setText(projects.get(position).starCount)
+        holder.forksCount.setText(projects.get(position).forksCount)
+
+
     }
 
     override fun getItemCount(): Int = projects.size()
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val nameWithNamespace = itemView.findViewById(R.id.project_name_with_namespace) as TextView
+        val name = itemView.findViewById(R.id.project_name) as TextView
+        val description = itemView.findViewById(R.id.project_description) as TextView
+        val starsCount = itemView.findViewById(R.id.project_stars_count) as TextView
+        val forksCount = itemView.findViewById(R.id.project_forks_count) as TextView
     }
 }
