@@ -24,4 +24,5 @@
 
     <string name="projects_all">All</string>
     <string name="projects_owned">Owned</string>
+    <string name="projects_no_description">No description</string>
 </resources>
