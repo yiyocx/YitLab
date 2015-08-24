@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,6 +27,13 @@
                 app:tabMode="fixed" />
 
         </android.support.design.widget.AppBarLayout>
+
+        <!-- Handle the Fragments to load for each Tab -->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <FrameLayout
             android:id="@+id/main_content"

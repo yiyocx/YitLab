@@ -7,8 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.activity_main.drawer_layout
-import kotlinx.android.synthetic.activity_main.tab_layout
+import kotlinx.android.synthetic.activity_main.*
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
 import yiyo.gitlabandroid.utils.extension.toast
@@ -36,6 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         setupToolbar()
         setupNavigationView()
+        setupViewPager();
         setupTabLayout()
     }
 
@@ -52,9 +52,14 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         mNavigationViewFragment.setUp(R.id.navigation_fragment, drawer_layout)
     }
 
+    private fun setupViewPager() {
+
+    }
+
     private fun setupTabLayout() {
         tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_all))
         tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_owned))
+        tab_layout.setupWithViewPager(view_pager)
     }
 
     private fun logoutUser() {

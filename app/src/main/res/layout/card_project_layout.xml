@@ -42,8 +42,6 @@
             android:drawableLeft="@drawable/ic_internal"
             android:drawableStart="@drawable/ic_internal"
             style="@style/TextAppearance.AppCompat.Small"
-            android:paddingRight="8dp"
-            android:paddingEnd="8dp"
             android:layout_below="@+id/project_description"/>
 
         <TextView
@@ -56,8 +54,6 @@
             android:drawableStart="@drawable/ic_star"
             android:layout_toRightOf="@+id/project_visibility"
             android:layout_toEndOf="@+id/project_visibility"
-            android:paddingRight="8dp"
-            android:paddingEnd="8dp"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_below="@+id/project_description"/>
 
