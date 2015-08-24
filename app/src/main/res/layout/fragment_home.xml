@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yiyo.gitlabandroid.views.fragments.HomeFragment">
+    tools:context="yiyo.gitlabandroid.ui.fragments.HomeFragment">
 
     <!-- Loading Projects Progress -->
     <ProgressBar

@@ -1,4 +1,4 @@
-package yiyo.gitlabandroid.views.adapters
+package yiyo.gitlabandroid.ui.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -26,6 +26,13 @@ class ProjectsAdapter(val projects: List<Project>, val context: Context) : Recyc
         } else {
             holder.description.setText(projects.get(position).description)
         }
+        val (icon, visibility) = when(projects.get(position).visibilityLevel) {
+            0 -> Pair(R.drawable.ic_private, "Private")
+            10 -> Pair(R.drawable.ic_internal, "Internal")
+            else -> Pair(R.drawable.ic_public, "Public")
+        }
+        holder.visibility.setText(visibility)
+        holder.visibility.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
         holder.starsCount.setText(projects.get(position).starCount)
         holder.forksCount.setText(projects.get(position).forksCount)
 
@@ -37,6 +44,7 @@ class ProjectsAdapter(val projects: List<Project>, val context: Context) : Recyc
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById(R.id.project_name) as TextView
         val description = itemView.findViewById(R.id.project_description) as TextView
+        val visibility = itemView.findViewById(R.id.project_visibility) as TextView
         val starsCount = itemView.findViewById(R.id.project_stars_count) as TextView
         val forksCount = itemView.findViewById(R.id.project_forks_count) as TextView
     }

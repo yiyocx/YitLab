@@ -3,6 +3,7 @@
 
     <string name="login_username">Username or Email</string>
     <string name="login_password">Password</string>
+    <string name="login_signing">Signing In</string>
 
     <string name="action_logout">Logout</string>
     <string name="action_sign_in">Sign In</string>

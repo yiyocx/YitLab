@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:name="yiyo.gitlabandroid.views.fragments.NavigationViewFragment"
+        android:name="yiyo.gitlabandroid.ui.fragments.NavigationViewFragment"
         tools:layout="@layout/fragment_navigation_view" />
 
 </android.support.v4.widget.DrawerLayout>

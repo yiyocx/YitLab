@@ -1,4 +1,4 @@
-package yiyo.gitlabandroid.views.activities
+package yiyo.gitlabandroid.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.activity_main.tab_layout
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
 import yiyo.gitlabandroid.utils.extension.toast
-import yiyo.gitlabandroid.views.fragments.HomeFragment
-import yiyo.gitlabandroid.views.fragments.NavigationViewFragment
+import yiyo.gitlabandroid.ui.fragments.HomeFragment
+import yiyo.gitlabandroid.ui.fragments.NavigationViewFragment
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {

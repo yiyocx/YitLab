@@ -1,4 +1,4 @@
-package yiyo.gitlabandroid.views.fragments
+package yiyo.gitlabandroid.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.fragment_home.*
 import yiyo.gitlabandroid.model.entities.Project
 import android.support.v7.widget.RecyclerView
 import android.widget.ArrayAdapter
-import yiyo.gitlabandroid.views.adapters.ProjectsAdapter
+import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
 
 class HomeFragment : Fragment(), HomeView {
 

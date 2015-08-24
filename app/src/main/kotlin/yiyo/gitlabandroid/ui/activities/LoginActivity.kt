@@ -1,4 +1,4 @@
-package yiyo.gitlabandroid.views.activities
+package yiyo.gitlabandroid.ui.activities
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             finish()
         }
 
-        sign_in_button.setOnClickListener { it -> attemptLogin() }
+        sign_in_button.setOnClickListener { attemptLogin() }
     }
 
     override fun onResume() {
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun showProgress() {
-        progressBar.setMessage("Signing In")
+        progressBar.setMessage(getResources().getString(R.string.login_signing))
         progressBar.setIndeterminate(true)
         progressBar.setCancelable(false)
         progressBar.show()
