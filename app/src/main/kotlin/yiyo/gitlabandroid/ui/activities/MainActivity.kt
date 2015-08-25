@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         setupToolbar()
         setupNavigationView()
         setupViewPager();
-        setupTabLayout()
     }
 
     private fun setupToolbar() {
@@ -54,12 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
     private fun setupViewPager() {
 
-    }
-
-    private fun setupTabLayout() {
-        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_all))
-        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_owned))
-        tab_layout.setupWithViewPager(view_pager)
     }
 
     private fun logoutUser() {

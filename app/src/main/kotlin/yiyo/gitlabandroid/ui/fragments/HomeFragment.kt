@@ -7,20 +7,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.fragment_home.*
 import yiyo.gitlabandroid.R
+import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.mvp.presenters.HomePresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
-import kotlin.properties.Delegates
-import kotlinx.android.synthetic.fragment_home.*
-import yiyo.gitlabandroid.model.entities.Project
-import android.support.v7.widget.RecyclerView
-import android.widget.ArrayAdapter
 import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
+import kotlin.properties.Delegates
 
-class HomeFragment : Fragment(), HomeView {
-
-    private val homePresenter by Delegates.lazy { HomePresenter(this@HomeFragment) }
-
+class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -30,34 +25,12 @@ class HomeFragment : Fragment(), HomeView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super<Fragment>.onViewCreated(view, savedInstanceState)
 
-        val linearLayoutManager = LinearLayoutManager(getContext())
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL)
-        recycler_repositories.setHasFixedSize(true)
-        recycler_repositories.setLayoutManager(linearLayoutManager)
+        setupTabLayout()
     }
 
-    override fun onResume() {
-        super<Fragment>.onResume()
-        homePresenter.onResume()
+    private fun setupTabLayout() {
+        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_all))
+        tab_layout.addTab(tab_layout.newTab().setText(R.string.projects_owned))
+        tab_layout.setupWithViewPager(view_pager)
     }
-
-    override fun onPause() {
-        super<Fragment>.onPause()
-        homePresenter.onPause()
-    }
-
-    override fun showLoading() {
-        projects_progress.setVisibility(View.VISIBLE)
-    }
-
-    override fun hideLoading() {
-        projects_progress.setVisibility(View.GONE)
-    }
-
-    override fun showProjects(projects: List<Project>) {
-        val projectsAdapter = ProjectsAdapter(projects, getContext())
-        recycler_repositories.setAdapter(projectsAdapter)
-    }
-
-    override fun getContext(): Context = getActivity()
 }
