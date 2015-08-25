@@ -13,6 +13,7 @@ import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.mvp.presenters.HomePresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
 import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
+import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
 import kotlin.properties.Delegates
 
 class HomeFragment : Fragment() {
@@ -24,8 +25,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super<Fragment>.onViewCreated(view, savedInstanceState)
-
+        setupViewPager()
         setupTabLayout()
+    }
+
+    private fun setupViewPager() {
+        val adapter = ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        adapter.addFragment(AllProjectsFragment(), "All Projects");
+        adapter.addFragment(AllProjectsFragment(), "Owned");
+        view_pager.setAdapter(adapter);
     }
 
     private fun setupTabLayout() {

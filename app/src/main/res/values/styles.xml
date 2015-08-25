@@ -37,5 +37,6 @@
         <item name="tabTextColor">@color/colorPrimaryLight</item>
         <item name="tabIndicatorColor">@android:color/white</item>
         <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 </resources>

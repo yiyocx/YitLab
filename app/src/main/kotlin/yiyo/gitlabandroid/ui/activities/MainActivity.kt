@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         setupToolbar()
         setupNavigationView()
-        setupViewPager();
     }
 
     private fun setupToolbar() {
@@ -49,10 +48,6 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
     fun setupNavigationView() {
         mNavigationViewFragment.setUp(R.id.navigation_fragment, drawer_layout)
-    }
-
-    private fun setupViewPager() {
-
     }
 
     private fun logoutUser() {
@@ -79,8 +74,8 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.getItemId()) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.getItemId()) {
             android.R.id.home -> {
                 mNavigationViewFragment.openDrawer()
                 true

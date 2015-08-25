@@ -28,7 +28,7 @@ class LoginPresenter(private val loginView: LoginView) : Presenter {
     fun login(username: String, password: String) {
         loginView.showProgress()
 
-        if (validate(username, password)) {
+        if (valid(username, password)) {
             
             LoginUseCase(username, password, loginView.getContext())
                 .execute()
@@ -42,7 +42,7 @@ class LoginPresenter(private val loginView: LoginView) : Presenter {
         }
     }
 
-    fun validate(username: String, password: String): Boolean {
+    fun valid(username: String, password: String): Boolean {
         var valid = true
 
         // Check for a valid password, if the user entered one.

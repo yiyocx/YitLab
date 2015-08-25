@@ -30,6 +30,7 @@ class Configuration(val mContext: Context) {
         editor = sharedPreferences.edit()
         editor.apply()
     }
+
     /**
      * Create session for a user
      */
