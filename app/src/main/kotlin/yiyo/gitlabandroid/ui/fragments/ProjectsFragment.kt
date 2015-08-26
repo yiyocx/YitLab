@@ -21,14 +21,7 @@ import kotlin.properties.Delegates
  */
 public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView {
 
-    private val projectsPresenter: ProjectsPresenter
-
-    init {
-        projectsPresenter = if (owned)
-            ProjectsPresenter(this@ProjectsFragment, owned = true)
-        else
-            ProjectsPresenter(this@ProjectsFragment)
-    }
+    private val projectsPresenter: ProjectsPresenter by Delegates.lazy { ProjectsPresenter(this@ProjectsFragment, owned) }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_projects, container, false)

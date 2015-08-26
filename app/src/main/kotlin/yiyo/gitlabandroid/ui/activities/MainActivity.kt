@@ -96,13 +96,12 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         // Actualizar el contenido principal reemplazando los fragments
         when (menuItem.getItemId()) {
             R.id.navigation_item_1 -> {
-                mCurrentFragment = HomeFragment(tab_layout)
+                mCurrentFragment = HomeFragment()
                 setTitle(R.string.app_name)
             }
             R.id.navigation_item_2, R.id.navigation_item_3 -> toast(menuItem.getTitle())
-            else -> mCurrentFragment = HomeFragment(tab_layout)
+            else -> mCurrentFragment = HomeFragment()
         }
-
         val fragmentManager = getSupportFragmentManager()
         fragmentManager.beginTransaction().replace(R.id.main_content, mCurrentFragment).commit()
     }

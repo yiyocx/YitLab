@@ -11,7 +11,7 @@ import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
 import yiyo.gitlabandroid.utils.toast
 
-class HomeFragment(val tabLayout: TabLayout) : Fragment() {
+class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -33,6 +33,7 @@ class HomeFragment(val tabLayout: TabLayout) : Fragment() {
     }
 
     fun setupTabLayout() {
+        val tabLayout = getActivity().findViewById(R.id.tab_layout) as TabLayout
         tabLayout.setVisibility(View.VISIBLE)
         tabLayout.setupWithViewPager(view_pager)
     }
