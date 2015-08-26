@@ -19,5 +19,8 @@ interface ApiService {
     fun signIn(Body credentials: JsonObject): Observable<Session>
 
     GET("/projects")
-    fun getProjects(): Observable<List<Project>>
+    fun getAllProjects(): Observable<List<Project>>
+
+    GET("/projects/owned")
+    fun getOwnedProjects(): Observable<List<Project>>
 }

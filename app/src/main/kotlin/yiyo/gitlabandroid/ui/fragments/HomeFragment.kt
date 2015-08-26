@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.fragment_home.view_pager
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
+import yiyo.gitlabandroid.utils.toast
 
 class HomeFragment(val tabLayout: TabLayout) : Fragment() {
 
@@ -26,15 +27,13 @@ class HomeFragment(val tabLayout: TabLayout) : Fragment() {
 
     fun setupViewPager() {
         val adapter = ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(AllProjectsFragment(), "All Projects");
-        adapter.addFragment(AllProjectsFragment(), "Owned");
+        adapter.addFragment(ProjectsFragment(), getString(R.string.projects_all));
+        adapter.addFragment(ProjectsFragment(owned = true), getString(R.string.projects_owned));
         view_pager.setAdapter(adapter);
     }
 
     fun setupTabLayout() {
         tabLayout.setVisibility(View.VISIBLE)
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.projects_all))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.projects_owned))
         tabLayout.setupWithViewPager(view_pager)
     }
 }

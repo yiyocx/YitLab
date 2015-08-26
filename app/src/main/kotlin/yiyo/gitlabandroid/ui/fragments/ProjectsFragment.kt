@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.fragment_projects.projects_progress
 import kotlinx.android.synthetic.fragment_projects.recycler_repositories
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.model.entities.Project
-import yiyo.gitlabandroid.mvp.presenters.HomePresenter
+import yiyo.gitlabandroid.mvp.presenters.ProjectsPresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
 import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
 import kotlin.properties.Delegates
@@ -19,9 +19,16 @@ import kotlin.properties.Delegates
 /**
  * Created by yiyo on 25/08/15.
  */
-public class AllProjectsFragment : Fragment(), HomeView {
+public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView {
 
-    private val homePresenter by Delegates.lazy { HomePresenter(this@AllProjectsFragment) }
+    private val projectsPresenter: ProjectsPresenter
+
+    init {
+        projectsPresenter = if (owned)
+            ProjectsPresenter(this@ProjectsFragment, owned = true)
+        else
+            ProjectsPresenter(this@ProjectsFragment)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_projects, container, false)
@@ -38,12 +45,12 @@ public class AllProjectsFragment : Fragment(), HomeView {
 
     override fun onResume() {
         super<Fragment>.onResume()
-        homePresenter.onResume()
+        projectsPresenter.onResume()
     }
 
     override fun onPause() {
         super<Fragment>.onPause()
-        homePresenter.onPause()
+        projectsPresenter.onPause()
     }
 
     override fun showLoading() {

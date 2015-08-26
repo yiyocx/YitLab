@@ -13,7 +13,7 @@ import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.fragments.HomeFragment
 import yiyo.gitlabandroid.ui.fragments.NavigationViewFragment
 import yiyo.gitlabandroid.utils.Configuration
-import yiyo.gitlabandroid.utils.extension.toast
+import yiyo.gitlabandroid.utils.toast
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {

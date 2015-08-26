@@ -7,10 +7,10 @@ import retrofit.RetrofitError
 import rx.functions.Action1
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.domain.LoginUseCase
-import yiyo.gitlabandroid.utils.extension.tag
 import yiyo.gitlabandroid.model.entities.Session
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
+import yiyo.gitlabandroid.utils.tag
 
 /**
  * Created by yiyo on 11/07/15.

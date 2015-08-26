@@ -12,7 +12,13 @@ import yiyo.gitlabandroid.model.rest.ApiService
 class GetProjectsUseCase(private val apiService: ApiService) : UseCase<List<Project>> {
 
     override fun execute(): Observable<List<Project>> {
-        return apiService.getProjects()
+        return apiService.getAllProjects()
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun ownedProjects(): Observable<List<Project>> {
+        return apiService.getOwnedProjects()
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
     }
