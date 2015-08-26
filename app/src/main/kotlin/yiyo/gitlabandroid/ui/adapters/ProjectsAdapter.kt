@@ -35,8 +35,6 @@ class ProjectsAdapter(val projects: List<Project>, val context: Context) : Recyc
         holder.visibility.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
         holder.starsCount.setText(projects.get(position).starCount)
         holder.forksCount.setText(projects.get(position).forksCount)
-
-
     }
 
     override fun getItemCount(): Int = projects.size()
