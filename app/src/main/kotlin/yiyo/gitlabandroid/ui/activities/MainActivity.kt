@@ -7,12 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.activity_main.*
+import kotlinx.android.synthetic.activity_main.drawer_layout
+import kotlinx.android.synthetic.activity_main.tab_layout
 import yiyo.gitlabandroid.R
-import yiyo.gitlabandroid.utils.Configuration
-import yiyo.gitlabandroid.utils.extension.toast
 import yiyo.gitlabandroid.ui.fragments.HomeFragment
 import yiyo.gitlabandroid.ui.fragments.NavigationViewFragment
+import yiyo.gitlabandroid.utils.Configuration
+import yiyo.gitlabandroid.utils.extension.toast
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {
@@ -95,11 +96,11 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         // Actualizar el contenido principal reemplazando los fragments
         when (menuItem.getItemId()) {
             R.id.navigation_item_1 -> {
-                mCurrentFragment = HomeFragment()
+                mCurrentFragment = HomeFragment(tab_layout)
                 setTitle(R.string.app_name)
             }
             R.id.navigation_item_2, R.id.navigation_item_3 -> toast(menuItem.getTitle())
-            else -> mCurrentFragment = HomeFragment()
+            else -> mCurrentFragment = HomeFragment(tab_layout)
         }
 
         val fragmentManager = getSupportFragmentManager()

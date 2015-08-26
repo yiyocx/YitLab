@@ -18,13 +18,22 @@
 
             <include layout="@layout/tool_bar" />
 
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                style="@style/Theme.TabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:tabGravity="fill"
+                app:tabMode="fixed" />
+
         </android.support.design.widget.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 
