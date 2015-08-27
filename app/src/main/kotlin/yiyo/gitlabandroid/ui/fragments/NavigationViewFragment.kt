@@ -10,8 +10,8 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.navigation_header.*
-
+import kotlinx.android.synthetic.navigation_header.name
+import kotlinx.android.synthetic.navigation_header.username
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
 

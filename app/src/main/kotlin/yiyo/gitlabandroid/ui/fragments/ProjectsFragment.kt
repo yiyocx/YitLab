@@ -21,7 +21,8 @@ import kotlin.properties.Delegates
  */
 public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView {
 
-    private val projectsPresenter: ProjectsPresenter by Delegates.lazy { ProjectsPresenter(this@ProjectsFragment, owned) }
+    private val projectsPresenter by Delegates.lazy { ProjectsPresenter(this@ProjectsFragment, owned) }
+    private val projectsAdapter by Delegates.lazy { ProjectsAdapter(getContext()) }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_projects, container, false)
@@ -34,6 +35,7 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL)
         recycler_repositories.setHasFixedSize(true)
         recycler_repositories.setLayoutManager(linearLayoutManager)
+        recycler_repositories.setAdapter(projectsAdapter)
     }
 
     override fun onResume() {
@@ -54,9 +56,8 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
         projects_progress.setVisibility(View.GONE)
     }
 
-    override fun showProjects(projects: List<Project>) {
-        val projectsAdapter = ProjectsAdapter(projects, getContext())
-        recycler_repositories.setAdapter(projectsAdapter)
+    override fun showProjects(projectsReceived: List<Project>) {
+        projectsAdapter.projects = projectsReceived
     }
 
     override fun getContext(): Context = getActivity()

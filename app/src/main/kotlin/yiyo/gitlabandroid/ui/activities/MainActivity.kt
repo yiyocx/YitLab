@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.activity_main.drawer_layout
-import kotlinx.android.synthetic.activity_main.tab_layout
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.fragments.HomeFragment
 import yiyo.gitlabandroid.ui.fragments.NavigationViewFragment

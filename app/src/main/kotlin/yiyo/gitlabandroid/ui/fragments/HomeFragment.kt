@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.fragment_home.view_pager
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
-import yiyo.gitlabandroid.utils.toast
 
 class HomeFragment : Fragment() {
 

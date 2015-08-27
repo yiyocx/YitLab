@@ -5,8 +5,8 @@ import com.google.gson.JsonObject
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import yiyo.gitlabandroid.model.rest.RestClient
 import yiyo.gitlabandroid.model.entities.Session
+import yiyo.gitlabandroid.model.rest.RestClient
 
 /**
  * Created by yiyo on 12/07/15.

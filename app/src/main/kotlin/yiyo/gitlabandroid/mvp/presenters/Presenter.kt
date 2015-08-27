@@ -1,7 +1,5 @@
 package yiyo.gitlabandroid.mvp.presenters
 
-import android.view.View
-
 /**
  * Created by yiyo on 11/07/15.
 

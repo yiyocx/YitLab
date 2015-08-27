@@ -8,11 +8,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.model.entities.Project
+import kotlin.properties.Delegates
 
 /**
  * Created by yiyo on 12/08/15.
  */
-class ProjectsAdapter(val projects: List<Project>, val context: Context) : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
+class ProjectsAdapter(val context: Context) : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
+
+    var projects: List<Project> by Delegates.observable(arrayListOf(), {
+        d, old, new ->
+        notifyDataSetChanged()
+    })
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView = LayoutInflater.from(context).inflate(R.layout.card_project_layout, parent, false)

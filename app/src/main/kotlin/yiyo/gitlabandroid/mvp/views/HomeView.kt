@@ -11,5 +11,5 @@ interface HomeView : BaseView {
 
     fun hideLoading()
 
-    fun showProjects(projects: List<Project>)
+    fun showProjects(projectsReceived: List<Project>)
 }

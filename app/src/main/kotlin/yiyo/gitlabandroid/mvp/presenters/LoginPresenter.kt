@@ -2,9 +2,7 @@ package yiyo.gitlabandroid.mvp.presenters
 
 import android.text.TextUtils
 import android.util.Log
-
 import retrofit.RetrofitError
-import rx.functions.Action1
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.domain.LoginUseCase
 import yiyo.gitlabandroid.model.entities.Session

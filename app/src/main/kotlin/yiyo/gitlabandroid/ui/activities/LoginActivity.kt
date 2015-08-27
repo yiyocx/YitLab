@@ -3,12 +3,12 @@ package yiyo.gitlabandroid.ui.activities
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import kotlinx.android.synthetic.activity_login.*
+import kotlinx.android.synthetic.activity_login.email_text_input_layout
+import kotlinx.android.synthetic.activity_login.password_text_input_layout
+import kotlinx.android.synthetic.activity_login.sign_in_button
 import retrofit.RetrofitError
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.mvp.presenters.LoginPresenter

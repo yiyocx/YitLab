@@ -2,7 +2,6 @@ package yiyo.gitlabandroid.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import java.util.*
 
 /**
 * Created by yiyo on 24/07/15.
