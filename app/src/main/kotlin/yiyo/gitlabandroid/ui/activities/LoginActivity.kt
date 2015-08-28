@@ -1,10 +1,10 @@
 package yiyo.gitlabandroid.ui.activities
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.activity_login.email_text_input_layout
 import kotlinx.android.synthetic.activity_login.password_text_input_layout

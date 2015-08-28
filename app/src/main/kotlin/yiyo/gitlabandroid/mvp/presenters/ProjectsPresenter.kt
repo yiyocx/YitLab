@@ -1,5 +1,6 @@
 package yiyo.gitlabandroid.mvp.presenters
 
+import android.widget.Toast
 import yiyo.gitlabandroid.domain.GetProjectsUseCase
 import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.model.rest.RestClient
@@ -30,6 +31,10 @@ public class ProjectsPresenter(private val homeView: HomeView, private val owned
                             { homeView.hideLoading() }
                     )
         }
+    }
+
+    fun onProjectClicked(project: Project) {
+        Toast.makeText(homeView.getContext(), "Me tocaste: ${project.name}", Toast.LENGTH_SHORT).show()
     }
 
     fun onReceiveProjects(projects: List<Project>) {

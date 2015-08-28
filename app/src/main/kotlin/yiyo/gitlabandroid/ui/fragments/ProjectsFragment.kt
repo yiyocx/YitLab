@@ -22,7 +22,9 @@ import kotlin.properties.Delegates
 public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView {
 
     private val projectsPresenter by Delegates.lazy { ProjectsPresenter(this@ProjectsFragment, owned) }
-    private val projectsAdapter by Delegates.lazy { ProjectsAdapter(getContext()) }
+    private val projectsAdapter by Delegates.lazy {
+        ProjectsAdapter(getContext(), { project -> projectsPresenter.onProjectClicked(project) })
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_projects, container, false)
