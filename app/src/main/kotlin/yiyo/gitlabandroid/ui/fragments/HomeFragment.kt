@@ -28,10 +28,10 @@ class HomeFragment : Fragment() {
         // The getChildFragmentManager() is Very important! Because fragments inside fragments are
         // not supported with the tipical fragmentManager, it requires NestedFragments and those
         // uses a childFragmentManager(). In other case a strange behaviour occurs
-        val adapter = ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(ProjectsFragment(), getString(R.string.projects_all));
-        adapter.addFragment(ProjectsFragment(owned = true), getString(R.string.projects_owned));
-        view_pager.setAdapter(adapter);
+        val adapter = ViewPagerAdapter(getChildFragmentManager())
+        adapter.addFragment(ProjectsFragment(), getString(R.string.projects_all))
+        adapter.addFragment(ProjectsFragment(owned = true), getString(R.string.projects_owned))
+        view_pager.setAdapter(adapter)
     }
 
     fun setupTabLayout() {

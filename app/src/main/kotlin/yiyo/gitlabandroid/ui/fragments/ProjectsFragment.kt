@@ -1,6 +1,7 @@
 package yiyo.gitlabandroid.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.mvp.presenters.ProjectsPresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
+import yiyo.gitlabandroid.ui.activities.ProjectDetailActivity
 import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
 import kotlin.properties.Delegates
 
@@ -60,6 +62,12 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
 
     override fun showProjects(projectsReceived: List<Project>) {
         projectsAdapter.projects = projectsReceived
+    }
+
+    override fun navigateToProjectDetail(projectId: Int) {
+        val intent = Intent(getActivity(), javaClass<ProjectDetailActivity>())
+        intent.putExtra("projectId", projectId)
+        startActivity(intent)
     }
 
     override fun getContext(): Context = getActivity()

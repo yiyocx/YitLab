@@ -12,4 +12,6 @@ interface HomeView : BaseView {
     fun hideLoading()
 
     fun showProjects(projectsReceived: List<Project>)
+
+    fun navigateToProjectDetail(projectId: Int)
 }

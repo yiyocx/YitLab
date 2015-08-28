@@ -26,4 +26,12 @@
     <string name="projects_all">All</string>
     <string name="projects_owned">Owned</string>
     <string name="projects_no_description">No description</string>
+
+    <string name="project_detail_title">Project Detail</string>
+    <string name="project_detail_activity">Activity</string>
+    <string name="project_detail_code">Code</string>
+    <string name="project_detail_commits">Commits</string>
+    <string name="project_detail_issues">Issues</string>
+    <string name="project_detail_merge_requests">Merge Request</string>
+    <string name="project_detail_members">Members</string>
 </resources>

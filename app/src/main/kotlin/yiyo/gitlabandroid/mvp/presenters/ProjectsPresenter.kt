@@ -34,7 +34,7 @@ public class ProjectsPresenter(private val homeView: HomeView, private val owned
     }
 
     fun onProjectClicked(project: Project) {
-        Toast.makeText(homeView.getContext(), "Me tocaste: ${project.name}", Toast.LENGTH_SHORT).show()
+        homeView.navigateToProjectDetail(project.id)
     }
 
     fun onReceiveProjects(projects: List<Project>) {
