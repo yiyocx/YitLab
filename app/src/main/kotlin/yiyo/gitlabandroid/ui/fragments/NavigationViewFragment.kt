@@ -14,11 +14,12 @@ import kotlinx.android.synthetic.navigation_header.name
 import kotlinx.android.synthetic.navigation_header.username
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.utils.Configuration
+import kotlin.properties.Delegates
 
 class NavigationViewFragment : Fragment() {
 
-    private var mDrawerLayout: DrawerLayout? = null
-    private var mNavigationView: NavigationView? = null
+    private var mDrawerLayout: DrawerLayout by Delegates.notNull()
+    private var mNavigationView: NavigationView by Delegates.notNull()
 
     /**
      * A pointer to the current callbacks instance (the Activity).
@@ -43,7 +44,7 @@ class NavigationViewFragment : Fragment() {
             username.setText(userDetails.get(Configuration.USERNAME))
         }
 
-        mNavigationView?.setNavigationItemSelectedListener(fun (menuItem: MenuItem): Boolean {
+        mNavigationView.setNavigationItemSelectedListener(fun (menuItem: MenuItem): Boolean {
             menuItem.setChecked(true)
             mCallbacks?.onNavigationDrawerItemSelected(menuItem)
             closeDrawer()
@@ -55,21 +56,21 @@ class NavigationViewFragment : Fragment() {
     }
 
     private fun setDefaultMenuItem(menuItemId: Int) {
-        val menuItem = mNavigationView?.getMenu()?.findItem(menuItemId)
+        val menuItem = mNavigationView.getMenu()?.findItem(menuItemId)
         menuItem?.setChecked(true)
         mCallbacks?.onNavigationDrawerItemSelected(menuItem!!)
     }
 
     public fun isDrawerOpen(): Boolean {
-        return mDrawerLayout!!.isDrawerOpen(mNavigationView)
+        return mDrawerLayout.isDrawerOpen(mNavigationView)
     }
 
     public fun closeDrawer() {
-        mDrawerLayout?.closeDrawers()
+        mDrawerLayout.closeDrawers()
     }
 
     public fun openDrawer() {
-        mDrawerLayout?.openDrawer(GravityCompat.START)
+        mDrawerLayout.openDrawer(GravityCompat.START)
     }
 
     override fun onAttach(activity: Activity?) {
