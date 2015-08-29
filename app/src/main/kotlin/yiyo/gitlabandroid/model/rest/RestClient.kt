@@ -26,7 +26,7 @@ class RestClient {
 
             val gson = GsonBuilder().setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'").create()
             val restAdapter = RestAdapter.Builder()
-                    .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setLogLevel(RestAdapter.LogLevel.HEADERS_AND_ARGS)
                     .setEndpoint(BASE_ULR)
                     .setRequestInterceptor(requestInterceptor)
                     .setClient(OkClient())
