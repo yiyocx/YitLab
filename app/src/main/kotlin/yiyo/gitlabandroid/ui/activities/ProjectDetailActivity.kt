@@ -26,6 +26,7 @@ class ProjectDetailActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
+        toolbar.setTitle(getIntent().getStringExtra("name"))
         setSupportActionBar(toolbar)
         val ab = getSupportActionBar()
         ab.setDisplayHomeAsUpEnabled(true)

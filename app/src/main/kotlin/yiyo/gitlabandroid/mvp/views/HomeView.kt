@@ -13,5 +13,5 @@ interface HomeView : BaseView {
 
     fun showProjects(projectsReceived: List<Project>)
 
-    fun navigateToProjectDetail(projectId: Int)
+    fun navigateToProjectDetail(projectId: Int, name: String, pathWithNamespace: String)
 }

@@ -64,9 +64,11 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
         projectsAdapter.projects = projectsReceived
     }
 
-    override fun navigateToProjectDetail(projectId: Int) {
+    override fun navigateToProjectDetail(projectId: Int, name: String, pathWithNamespace: String) {
         val intent = Intent(getActivity(), javaClass<ProjectDetailActivity>())
         intent.putExtra("projectId", projectId)
+        intent.putExtra("name", name)
+        intent.putExtra("pathWithNamespace", pathWithNamespace)
         startActivity(intent)
     }
 

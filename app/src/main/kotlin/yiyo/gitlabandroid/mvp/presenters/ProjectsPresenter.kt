@@ -33,9 +33,7 @@ public class ProjectsPresenter(private val homeView: HomeView, private val owned
         }
     }
 
-    fun onProjectClicked(project: Project) {
-        homeView.navigateToProjectDetail(project.id)
-    }
+    fun onProjectClicked(project: Project) = homeView.navigateToProjectDetail(project.id, project.name, project.pathWithNamespace)
 
     fun onReceiveProjects(projects: List<Project>) {
         homeView.showProjects(projects)

@@ -4,7 +4,9 @@ import com.google.gson.JsonObject
 import retrofit.http.Body
 import retrofit.http.GET
 import retrofit.http.POST
+import retrofit.http.Path
 import rx.Observable
+import yiyo.gitlabandroid.model.entities.Event
 import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.model.entities.Session
 
@@ -21,4 +23,7 @@ interface ApiService {
 
     GET("/projects/owned")
     fun getOwnedProjects(): Observable<List<Project>>
+
+    GET("/projects/{id}/events")
+    fun getProjectEvents(Path("id") id: Int): Observable<List<Event>>
 }
