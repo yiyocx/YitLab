@@ -1,12 +1,12 @@
 package yiyo.gitlabandroid.ui.activities
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import kotlinx.android.synthetic.activity_project_detail.tab_layout
+import kotlinx.android.synthetic.activity_project_detail.view_pager
 import yiyo.gitlabandroid.R
-import kotlinx.android.synthetic.activity_project_detail.*
 import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
 import yiyo.gitlabandroid.ui.fragments.ProjectsFragment
 
@@ -16,7 +16,7 @@ import yiyo.gitlabandroid.ui.fragments.ProjectsFragment
 class ProjectDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super<AppCompatActivity>.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_detail)
 
         setupToolbar()

@@ -3,7 +3,7 @@ package yiyo.gitlabandroid.ui.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by yiyo on 25/08/15.

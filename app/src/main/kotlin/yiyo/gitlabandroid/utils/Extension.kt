@@ -7,7 +7,7 @@ import android.widget.Toast
 /**
  * Created by yiyo on 3/08/15.
  */
-fun <T> T.tag(): String = javaClass.getSimpleName()
+fun <T : Any> T.tag(): String = javaClass.simpleName
 
 fun Activity.toast(message: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()

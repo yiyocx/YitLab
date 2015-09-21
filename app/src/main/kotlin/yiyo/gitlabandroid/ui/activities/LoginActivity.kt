@@ -15,22 +15,21 @@ import yiyo.gitlabandroid.mvp.presenters.LoginPresenter
 import yiyo.gitlabandroid.mvp.views.LoginView
 import yiyo.gitlabandroid.utils.Configuration
 import java.net.HttpURLConnection
-import kotlin.properties.Delegates
 
 class LoginActivity : AppCompatActivity(), LoginView {
 
-    private val loginPresenter by Delegates.lazy { LoginPresenter(this@LoginActivity) }
-    private val progressBar by Delegates.lazy { ProgressDialog(this@LoginActivity) }
+    private val loginPresenter by lazy(LazyThreadSafetyMode.NONE) { LoginPresenter(this@LoginActivity) }
+    private val progressBar by lazy(LazyThreadSafetyMode.NONE) { ProgressDialog(this@LoginActivity) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super<AppCompatActivity>.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         val configuration = Configuration(this@LoginActivity)
 
         if (configuration.isLoggedIn()) {
             // El usuario ya esta logueado. Se redirige a la Actividad Principal
-            val intent = Intent(this@LoginActivity, javaClass<MainActivity>())
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -39,12 +38,12 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun onResume() {
-        super<AppCompatActivity>.onResume()
+        super.onResume()
         loginPresenter.onResume()
     }
 
     override fun onPause() {
-        super<AppCompatActivity>.onPause()
+        super.onPause()
         loginPresenter.onPause()
     }
 
@@ -76,7 +75,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun navigateToHome() {
-        val intent = Intent(this@LoginActivity, javaClass<MainActivity>())
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

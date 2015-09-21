@@ -18,10 +18,9 @@ class RestClient {
 
         fun getApiService(context: Context): ApiService {
             val requestInterceptor = RequestInterceptor() {
-                it ->
-                    val configuration = Configuration(context);
-                    it.addHeader("PRIVATE-TOKEN", configuration.getPrivateToken())
-                    it.addHeader("Content-Type", "application/json")
+                val configuration = Configuration(context);
+                it.addHeader("PRIVATE-TOKEN", configuration.getPrivateToken())
+                it.addHeader("Content-Type", "application/json")
             }
 
             val gson = GsonBuilder().setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'").create()
@@ -33,7 +32,7 @@ class RestClient {
                     .setConverter(GsonConverter(gson))
                     .build()
 
-            return restAdapter.create(javaClass<ApiService>())
+            return restAdapter.create(ApiService::class.java)
         }
     }
 }

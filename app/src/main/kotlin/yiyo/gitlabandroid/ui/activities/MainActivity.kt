@@ -17,14 +17,14 @@ import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawerCallbacks {
 
-    private val mNavigationViewFragment by Delegates.lazy {
+    private val mNavigationViewFragment by lazy(LazyThreadSafetyMode.NONE) {
         getFragmentManager().findFragmentById(R.id.navigation_fragment) as NavigationViewFragment }
-    private val configuration: Configuration by Delegates.lazy { Configuration(this@MainActivity) }
+    private val configuration: Configuration by lazy(LazyThreadSafetyMode.NONE) { Configuration(this@MainActivity) }
     private var mToolbar: Toolbar by Delegates.notNull()
     private var mCurrentFragment: Fragment by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super<AppCompatActivity>.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mToolbar = findViewById(R.id.toolbar) as Toolbar
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
     private fun logoutUser() {
         configuration.closeSession()
-        val intent = Intent(this, javaClass<LoginActivity>())
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
         if (mNavigationViewFragment.isDrawerOpen()) {
             mNavigationViewFragment.closeDrawer()
         } else {
-            super<AppCompatActivity>.onBackPressed()
+            super.onBackPressed()
         }
     }
 
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
                 logoutUser()
                 true
             }
-            else -> super<AppCompatActivity>.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

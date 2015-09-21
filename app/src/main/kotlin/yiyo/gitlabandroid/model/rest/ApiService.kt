@@ -15,13 +15,13 @@ import yiyo.gitlabandroid.model.entities.Session
  */
 interface ApiService {
 
-    POST("/session")
-    fun signIn(Body credentials: JsonObject): Observable<Session>
+    @POST("/session")
+    fun signIn(@Body credentials: JsonObject): Observable<Session>
 
-    GET("/projects")
+    @GET("/projects")
     fun getAllProjects(): Observable<List<Project>>
 
-    GET("/projects/owned")
+    @GET("/projects/owned")
     fun getOwnedProjects(): Observable<List<Project>>
 
     GET("/projects/{id}/events")
