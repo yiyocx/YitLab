@@ -24,6 +24,6 @@ interface ApiService {
     @GET("/projects/owned")
     fun getOwnedProjects(): Observable<List<Project>>
 
-    GET("/projects/{id}/events")
-    fun getProjectEvents(Path("id") id: Int): Observable<List<Event>>
+    @GET("/projects/{id}/events")
+    fun getProjectEvents(@Path("id") id: Int): Observable<List<Event>>
 }

@@ -16,15 +16,14 @@ import yiyo.gitlabandroid.mvp.presenters.ProjectsPresenter
 import yiyo.gitlabandroid.mvp.views.HomeView
 import yiyo.gitlabandroid.ui.activities.ProjectDetailActivity
 import yiyo.gitlabandroid.ui.adapters.ProjectsAdapter
-import kotlin.properties.Delegates
 
 /**
  * Created by yiyo on 25/08/15.
  */
 public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView {
 
-    private val projectsPresenter by Delegates.lazy { ProjectsPresenter(this@ProjectsFragment, owned) }
-    private val projectsAdapter by Delegates.lazy {
+    private val projectsPresenter by lazy(LazyThreadSafetyMode.NONE) { ProjectsPresenter(this@ProjectsFragment, owned) }
+    private val projectsAdapter by lazy(LazyThreadSafetyMode.NONE) {
         ProjectsAdapter(getContext(), { project -> projectsPresenter.onProjectClicked(project) })
     }
 
@@ -33,7 +32,7 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super<Fragment>.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
 
         val linearLayoutManager = LinearLayoutManager(getContext())
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL)
@@ -43,12 +42,12 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
     }
 
     override fun onResume() {
-        super<Fragment>.onResume()
+        super.onResume()
         projectsPresenter.onResume()
     }
 
     override fun onPause() {
-        super<Fragment>.onPause()
+        super.onPause()
         projectsPresenter.onPause()
     }
 
@@ -65,7 +64,7 @@ public class ProjectsFragment(val owned: Boolean = false) : Fragment(), HomeView
     }
 
     override fun navigateToProjectDetail(projectId: Int, name: String, pathWithNamespace: String) {
-        val intent = Intent(getActivity(), javaClass<ProjectDetailActivity>())
+        val intent = Intent(getActivity(), ProjectDetailActivity::class.java)
         intent.putExtra("projectId", projectId)
         intent.putExtra("name", name)
         intent.putExtra("pathWithNamespace", pathWithNamespace)
