@@ -1,4 +1,4 @@
-# Gitlab Android
+# YitLab (Gitlab Android)
 
 This is just a personal project that was born as an application to learn and practice concepts about Android development.
 
