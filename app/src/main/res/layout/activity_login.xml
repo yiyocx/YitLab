@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@color/error_color">
+                app:errorTextAppearance="@color/cardview_dark_background">
 
                 <EditText android:id="@+id/input_email"
                     android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:errorEnabled="true"
-                app:errorTextAppearance="@color/error_color">
+                app:errorTextAppearance="@color/cardview_dark_background">
 
                 <EditText android:id="@+id/input_password"
                     android:layout_width="match_parent"
