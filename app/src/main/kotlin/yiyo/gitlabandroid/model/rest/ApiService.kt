@@ -1,10 +1,10 @@
 package yiyo.gitlabandroid.model.rest
 
 import com.google.gson.JsonObject
-import retrofit.http.Body
-import retrofit.http.GET
-import retrofit.http.POST
-import retrofit.http.Path
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 import rx.Observable
 import yiyo.gitlabandroid.model.entities.Event
 import yiyo.gitlabandroid.model.entities.Project
@@ -15,15 +15,15 @@ import yiyo.gitlabandroid.model.entities.Session
  */
 interface ApiService {
 
-    @POST("/session")
+    @POST("session")
     fun signIn(@Body credentials: JsonObject): Observable<Session>
 
-    @GET("/projects")
+    @GET("projects")
     fun getAllProjects(): Observable<List<Project>>
 
-    @GET("/projects/owned")
+    @GET("projects/owned")
     fun getOwnedProjects(): Observable<List<Project>>
 
-    @GET("/projects/{id}/events")
+    @GET("projects/{id}/events")
     fun getProjectEvents(@Path("id") id: Int): Observable<List<Event>>
 }

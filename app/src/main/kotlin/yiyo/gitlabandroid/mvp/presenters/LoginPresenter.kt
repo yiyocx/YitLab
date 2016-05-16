@@ -2,7 +2,6 @@ package yiyo.gitlabandroid.mvp.presenters
 
 import android.text.TextUtils
 import android.util.Log
-import retrofit.RetrofitError
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.domain.LoginUseCase
 import yiyo.gitlabandroid.model.entities.Session
@@ -78,8 +77,8 @@ class LoginPresenter(private val loginView: LoginView) : Presenter {
 
     fun manageError(error: Throwable) {
         loginView.hideProgress()
-        Log.e(tag(), error.getMessage(), error)
+//        Log.e(tag(), error.getMessage(), error)
 
-        loginView.showConnectionError(error as RetrofitError)
+//        loginView.showConnectionError(error as RetrofitError)
     }
 }

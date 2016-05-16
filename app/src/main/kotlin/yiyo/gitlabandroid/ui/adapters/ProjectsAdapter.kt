@@ -46,7 +46,7 @@ class ProjectsAdapter(val context: Context, val onProjectClickListener: ((Projec
         holder.setOnClickListener(currentProject)
     }
 
-    override fun getItemCount(): Int = projects.size()
+    override fun getItemCount(): Int = projects.size
 
     class ViewHolder(itemView: View, val onProjectClickListener: ((Project) -> Unit)) :
             RecyclerView.ViewHolder(itemView) {

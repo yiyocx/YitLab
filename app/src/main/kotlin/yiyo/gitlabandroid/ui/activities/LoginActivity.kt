@@ -6,10 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.activity_login.email_text_input_layout
-import kotlinx.android.synthetic.activity_login.password_text_input_layout
-import kotlinx.android.synthetic.activity_login.sign_in_button
-import retrofit.RetrofitError
+import kotlinx.android.synthetic.main.activity_login.*
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.mvp.presenters.LoginPresenter
 import yiyo.gitlabandroid.mvp.views.LoginView
@@ -49,8 +46,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     fun attemptLogin() {
         // Get values at the time of the login attempt
-        val username = email_text_input_layout.getEditText().getText().toString()
-        val password = password_text_input_layout.getEditText().getText().toString()
+        val username = email_text_input_layout.getEditText()?.getText().toString()
+        val password = password_text_input_layout.getEditText()?.getText().toString()
 
         loginPresenter.login(username, password)
     }
@@ -80,47 +77,47 @@ class LoginActivity : AppCompatActivity(), LoginView {
         finish()
     }
 
-    override fun showConnectionError(error: RetrofitError) {
-        val alertBuilder: AlertDialog.Builder
-
-        if (error.getKind() === RetrofitError.Kind.NETWORK) {
-
-            // Cuando no hay una conexión establecida
-            alertBuilder = AlertDialog.Builder(this@LoginActivity)
-                .setTitle(getString(R.string.error_no_connection_title))
-                .setMessage(getString(R.string.error_no_connection_description))
-                .setPositiveButton(getString(R.string.action_retry), { dialog, witch ->
-                    dialog.dismiss()
-                    this@LoginActivity.attemptLogin()
-                })
-                .setNegativeButton(getString(R.string.action_cancel), { dialog, which ->
-                    dialog.cancel()
-                })
-                .setCancelable(false)
-
-            alertBuilder.show()
-        } else if (error.getResponse().getStatus() == HttpURLConnection.HTTP_UNAUTHORIZED) {
-
-            alertBuilder = AlertDialog.Builder(this@LoginActivity)
-                .setTitle(getString(R.string.error_sign_in_failed_title))
-                .setMessage(getString(R.string.error_sign_in_failed_description))
-                .setPositiveButton(getString(R.string.action_accept), { dialog, which ->
-                    dialog.dismiss()
-                })
-
-            alertBuilder.show()
-        } else if (error.getKind() === RetrofitError.Kind.UNEXPECTED) {
-
-            alertBuilder = AlertDialog.Builder(this@LoginActivity)
-                .setTitle(getString(R.string.error_unexpected_title))
-                .setMessage(getString(R.string.error_unexpected_description))
-                .setPositiveButton("OK", { dialog, which ->
-                    dialog.dismiss()
-                })
-
-            alertBuilder.show()
-        }
-    }
+//    override fun showConnectionError(error: RetrofitError) {
+//        val alertBuilder: AlertDialog.Builder
+//
+//        if (error.getKind() === RetrofitError.Kind.NETWORK) {
+//
+//            // Cuando no hay una conexión establecida
+//            alertBuilder = AlertDialog.Builder(this@LoginActivity)
+//                .setTitle(getString(R.string.error_no_connection_title))
+//                .setMessage(getString(R.string.error_no_connection_description))
+//                .setPositiveButton(getString(R.string.action_retry), { dialog, witch ->
+//                    dialog.dismiss()
+//                    this@LoginActivity.attemptLogin()
+//                })
+//                .setNegativeButton(getString(R.string.action_cancel), { dialog, which ->
+//                    dialog.cancel()
+//                })
+//                .setCancelable(false)
+//
+//            alertBuilder.show()
+//        } else if (error.getResponse().getStatus() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+//
+//            alertBuilder = AlertDialog.Builder(this@LoginActivity)
+//                .setTitle(getString(R.string.error_sign_in_failed_title))
+//                .setMessage(getString(R.string.error_sign_in_failed_description))
+//                .setPositiveButton(getString(R.string.action_accept), { dialog, which ->
+//                    dialog.dismiss()
+//                })
+//
+//            alertBuilder.show()
+//        } else if (error.getKind() === RetrofitError.Kind.UNEXPECTED) {
+//
+//            alertBuilder = AlertDialog.Builder(this@LoginActivity)
+//                .setTitle(getString(R.string.error_unexpected_title))
+//                .setMessage(getString(R.string.error_unexpected_description))
+//                .setPositiveButton("OK", { dialog, which ->
+//                    dialog.dismiss()
+//                })
+//
+//            alertBuilder.show()
+//        }
+//    }
 
     override fun getContext(): Context = this@LoginActivity
 }

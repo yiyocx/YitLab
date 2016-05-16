@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.activity_main.drawer_layout
+import kotlinx.android.synthetic.main.activity_main.*
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.fragments.HomeFragment
 import yiyo.gitlabandroid.ui.fragments.NavigationViewFragment
@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity(), NavigationViewFragment.NavigationDrawe
 
         // Show menu icon
         val ab = getSupportActionBar()
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu)
-        ab.setDisplayHomeAsUpEnabled(true)
+        ab?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        ab?.setDisplayHomeAsUpEnabled(true)
     }
 
     fun setupNavigationView() {

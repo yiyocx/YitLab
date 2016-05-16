@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.fragment_home.view_pager
+import kotlinx.android.synthetic.main.fragment_home.*
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.ui.adapters.ViewPagerAdapter
 

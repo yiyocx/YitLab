@@ -1,7 +1,5 @@
 package yiyo.gitlabandroid.mvp.views
 
-import retrofit.RetrofitError
-
 /**
  * Created by yiyo on 11/07/15.
  */
@@ -17,5 +15,5 @@ interface LoginView : BaseView {
 
     fun navigateToHome()
 
-    fun showConnectionError(error: RetrofitError)
+//    fun showConnectionError(error: RetrofitError)
 }

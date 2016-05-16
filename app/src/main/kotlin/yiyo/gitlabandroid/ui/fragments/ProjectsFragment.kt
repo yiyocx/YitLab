@@ -8,8 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.fragment_projects.projects_progress
-import kotlinx.android.synthetic.fragment_projects.recycler_repositories
+import kotlinx.android.synthetic.main.fragment_projects.*
 import yiyo.gitlabandroid.R
 import yiyo.gitlabandroid.model.entities.Project
 import yiyo.gitlabandroid.mvp.presenters.ProjectsPresenter

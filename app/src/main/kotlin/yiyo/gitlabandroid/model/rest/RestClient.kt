@@ -2,34 +2,41 @@ package yiyo.gitlabandroid.model.rest
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import retrofit.RequestInterceptor
-import retrofit.RestAdapter
-import retrofit.client.OkClient
-import retrofit.converter.GsonConverter
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import yiyo.gitlabandroid.utils.Configuration
 
 /**
- * Created by yiyo on 12/07/15.
+ * Created by yiyo
  */
 class RestClient {
 
     companion object {
-        val BASE_ULR = "https://gitlab.com/api/v3"
+        val BASE_ULR = "https://gitlab.com/api/v3/"
 
         fun getApiService(context: Context): ApiService {
-            val requestInterceptor = RequestInterceptor() {
+            val httpClient = OkHttpClient.Builder()
+            httpClient.addInterceptor { chain ->
                 val configuration = Configuration(context);
-                it.addHeader("PRIVATE-TOKEN", configuration.getPrivateToken())
-                it.addHeader("Content-Type", "application/json")
-            }
+                val originalRequest = chain.request()
+                val request = originalRequest.newBuilder()
+                        .addHeader("PRIVATE-TOKEN", configuration.getPrivateToken())
+                        .addHeader("Content-Type", "application/json")
+                .method(originalRequest.method(), originalRequest.body())
+                .build()
 
+                chain.proceed(request)
+            }
+            val client = httpClient.build()
             val gson = GsonBuilder().setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'").create()
-            val restAdapter = RestAdapter.Builder()
-                    .setLogLevel(RestAdapter.LogLevel.HEADERS_AND_ARGS)
-                    .setEndpoint(BASE_ULR)
-                    .setRequestInterceptor(requestInterceptor)
-                    .setClient(OkClient())
-                    .setConverter(GsonConverter(gson))
+
+            val restAdapter = Retrofit.Builder()
+                    .baseUrl(BASE_ULR)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(client)
                     .build()
 
             return restAdapter.create(ApiService::class.java)
